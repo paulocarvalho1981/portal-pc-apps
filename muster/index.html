@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Muster Calculator</title>
+  <link rel="stylesheet" href="muster.css">
+</head>
+
+
+
+
+
+
+
+<body>
+
+<!-- TOPO FIXO (FORA DO SCALE) -->
+<div class="muster-top">
+  <h1>Muster Calculator</h1>
+  <div class="clock" id="clock">00:00:00</div>
+  <a href="../index.html" class="back-link">← Portal</a>
+</div>
+
+<!-- ÁREA PRINCIPAL (ESCALADA) -->
+<div class="muster-page">
+
+  <!-- BOTÕES DE MODO -->
+  <div class="mode-toggle">
+    <button id="btnMuster" class="active">MUSTER</button>
+    <button id="btnAbandon">ABANDON</button>
+  </div>
+
+  <div class="muster-content">
+
+    <!-- COLUNA ESQUERDA -->
+    <section class="locations">
+      <h2>Location</h2>
+
+      <!-- PADRÃO DE LINHA -->
+      <div class="location-item">
+        <span class="loc-name">Lifeboat 1          
+        </span>
+        <span class="loc-muster">0</span>
+        <span class="loc-abandon">0</span>
+      </div>
+
+      <div class="location-item">
+        <span class="loc-name">Lifeboat 2</span>
+        <span class="loc-muster">0</span>
+        <span class="loc-abandon">0</span>
+      </div>
+
+      <div class="location-item">
+        <span class="loc-name">Lifeboat 3
+    </span>
+        <span class="loc-muster">0</span>
+        <span class="loc-abandon">0</span>
+      </div>
+
+      <div class="location-item">
+        <span class="loc-name">Lifeboat 4
+        </span>
+        <span class="loc-muster">0</span>
+        <span class="loc-abandon">0</span>
+      </div>
+
+      <div class="location-item">
+        <span class="loc-name">Command Team
+            <span class="edit-icon">✎</span>
+        </span>
+        <span class="loc-muster">0</span>
+        <span class="loc-abandon">0</span>
+      </div>
+
+      <div class="location-item">
+        <span class="loc-name">Rapid Response
+            <span class="edit-icon">✎</span>
+        </span>
+        <span class="loc-muster">0</span>
+        <span class="loc-abandon">0</span>
+      </div>
+
+      <div class="location-item">
+        <span class="loc-name">Emerg. Team 1
+            <span class="edit-icon">✎</span>
+        </span>
+        <span class="loc-muster">0</span>
+        <span class="loc-abandon">0</span>
+      </div>
+
+      <div class="location-item">
+        <span class="loc-name">Emerg. Team 2
+            <span class="edit-icon">✎</span>
+        </span>
+        <span class="loc-muster">0</span>
+        <span class="loc-abandon">0</span>
+      </div>
+
+      <div class="location-item">
+        <span class="loc-name">Medical
+            <span class="edit-icon">✎</span>
+        </span>
+        <span class="loc-muster">0</span>
+        <span class="loc-abandon">0</span>
+      </div>
+
+      <div class="location-item">
+        <span class="loc-name">ECR
+            <span class="edit-icon">✎</span>
+        </span>
+        <span class="loc-muster">0</span>
+        <span class="loc-abandon">0</span>
+      </div>
+
+      <div class="location-item">
+        <span class="loc-name">Well Control
+            <span class="edit-icon">✎</span>
+        </span>
+        <span class="loc-muster">0</span>
+        <span class="loc-abandon">0</span>
+      </div>
+
+      <div class="location-item">
+        <span class="loc-name">Galley
+            <span class="edit-icon">✎</span>
+    </span>
+        <span class="loc-muster">0</span>
+        <span class="loc-abandon">0</span>
+      </div>
+
+      <div class="location-item">
+        <span class="loc-name">Toolpusher
+            <span class="edit-icon">✎</span>
+        </span>
+        <span class="loc-muster">0</span>
+        <span class="loc-abandon">0</span>
+      </div>
+
+      <div class="location-item">
+        <span class="loc-name">Isolation Team
+            <span class="edit-icon">✎</span>
+        </span>
+        <span class="loc-muster">0</span>
+        <span class="loc-abandon">0</span>
+      </div>
+
+      <div class="location-item">
+        <span class="loc-name">ROV
+            <span class="edit-icon">✎</span>
+        </span>
+        <span class="loc-muster">0</span>
+        <span class="loc-abandon">0</span>
+      </div>
+
+      <div class="location-item">
+        <span class="loc-name">Laundry
+            <span class="edit-icon">✎</span>
+        </span>
+        <span class="loc-muster">0</span>
+        <span class="loc-abandon">0</span>
+      </div>
+
+      <div class="location-item">
+        <span class="loc-name">Exempted
+            <span class="edit-icon">✎</span>
+        </span>
+        <span class="loc-muster">0</span>
+        <span class="loc-abandon">0</span>
+      </div>
+
+      <!-- CONTROLE DE LOCAIS -->
+      <div class="location-controls">
+        <button class="minus" id="btnRemoveLocation">−</button>
+        <span>Gerenciar locais</span>
+        <button class="plus" id="btnAddLocation">+</button>
+      </div>
+
+    </section>
+
+    <!-- COLUNA DIREITA -->
+    <section class="panel">
+
+      <div class="status missing">
+        <h3>MISSING</h3>
+        <span>160</span>
+      </div>
+
+      <div class="status onboard">
+        <h3>ONBOARD</h3>
+        <span>160</span>
+      </div>
+
+      <div class="status count">
+        <h3>COUNT</h3>
+        <span>0</span>
+      </div>
+
+      <!-- TECLADO -->
+      <div class="keypad">
+        <button>1</button><button>2</button><button>3</button>
+        <button>4</button><button>5</button><button>6</button>
+        <button>7</button><button>8</button><button>9</button>
+        <button class="wide">0</button>
+        <button class="action">UNDO</button>
+        <button class="action">DEL</button>
+        <button class="action timeout">TIME OUT</button>
+      </div>
+      <textarea
+        class="info-box"
+        placeholder="Operational message..."
+        ></textarea>
+    </section>
+
+  </div>
+</div>
+
+<!-- POPUP ONBOARD (inicialmente oculto) -->
+<div class="onboard-popup hidden">
+  <div class="popup-box">
+    <h3>Alterar ONBOARD</h3>
+
+    <input
+      type="number"
+      id="onboardInput"
+      placeholder="Digite o total onboard"
+      min="0"
+    >
+
+    <div class="popup-actions">
+      <button type="button" id="cancelOnboard">Cancelar</button>
+      <button type="button" id="confirmOnboard">Confirmar</button>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- SCRIPT PRINCIPAL -->
+<script src="muster.js"></script>
+
+
+
+
+
+</body>
+</html>
