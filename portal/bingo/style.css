@@ -1,0 +1,149 @@
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background: #f4f4f4;
+}
+
+.sorteador {
+  margin-top: 20px;
+}
+
+#letra {
+  font-size: 80px;
+  font-weight: bold;
+}
+
+#numero {
+  font-size: 140px;
+  font-weight: bold;
+}
+
+button {
+  margin: 15px;
+  padding: 15px 30px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+table {
+  margin: 30px auto;
+  border-collapse: collapse;
+  width: 80%;
+}
+
+th, td {
+  border: 2px solid #000;
+  height: 60px;
+  font-size: 24px;
+}
+
+.voz {
+  display: block;
+  margin-top: 10px;
+}
+.painel-bingo {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.coluna-letras {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 40px;
+  font-weight: bold;
+  margin-right: 15px;
+}
+
+.coluna-numeros {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.linha {
+  display: flex;
+  gap: 5px;
+}
+
+.numero {
+  width: 40px;
+  height: 40px;
+  background: #e0e0e0;
+  border-radius: 50%;
+  line-height: 40px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.numero.sorteado {
+  background: #27ae60;
+  color: #ff0101;
+}
+
+@keyframes destaque {
+  0% {
+    transform: scale(1);
+    background-color: #f1c40f;
+  }
+  50% {
+    transform: scale(1.6);
+    background-color: #e74c3c;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.numero.animado {
+  animation: destaque 0.6s ease;
+}
+@keyframes destaqueTopo {
+  0% {
+    transform: scale(1);
+    color: #000;
+  }
+  40% {
+    transform: scale(1.8);
+    color: #e74c3c;
+  }
+  100% {
+    transform: scale(1);
+    color: #000;
+  }
+}
+
+#numero.animado-topo {
+  animation: destaqueTopo 0.6s ease;
+}
+
+#letra.animado-topo {
+  animation: destaqueTopo 0.6s ease;
+}
+/* Cores base por linha */
+#linha-B .numero {
+  background: #d6e9ff;
+  border: 2px solid #2980b9;
+}
+
+#linha-I .numero {
+  background: #d5f5e3;
+  border: 2px solid #27ae60;
+}
+
+#linha-N .numero {
+  background: #fcf3cf;
+  border: 2px solid #f1c40f;
+}
+
+#linha-G .numero {
+  background: #fdebd0;
+  border: 2px solid #e67e22;
+}
+
+#linha-O .numero {
+  background: #fadbd8;
+  border: 2px solid #c0392b;
+}
