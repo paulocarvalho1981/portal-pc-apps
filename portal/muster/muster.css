@@ -1,0 +1,445 @@
+/* ======================
+   FORÇAR TEMA CLARO
+====================== */
+html {
+  color-scheme: light;
+}
+
+body {
+  background-color: #dedbed;
+}
+
+
+/* ================= RESET ================= */
+* {
+  box-sizing: border-box;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+  background: #e6e6ea;
+}
+
+/* ================= TOPO FIXO ================= */
+.muster-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  background: #ffffff;
+  border-bottom: 2px solid #ddd;
+}
+
+.muster-top h1 {
+  font-size: 22px;
+  margin: 0;
+}
+
+.clock {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.back-link {
+  font-size: 14px;
+  text-decoration: none;
+  color: #6f5cc2;
+  font-weight: 600;
+}
+
+/* ================= ÁREA ESCALADA ================= */
+.muster-page {
+  padding: 20px;
+  zoom: 0.80; /* verificar tamanho no tablet*/
+  width: 100%; /* verificar tamanho no tablet*/
+}
+
+/* ================= BOTÕES DE MODO ================= */
+.mode-toggle {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 14px;
+  position: relative;
+  z-index: 100;
+}
+
+.mode-toggle button {
+  flex: 1;
+  padding: 10px;
+  border-radius: 12px;
+  border: none;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  background: #dcd6f5;
+  color: #444;
+}
+
+.mode-toggle button.active {
+  background: #6f5cc2;
+  color: #fff;
+}
+
+/* ================= GRID PRINCIPAL ================= */
+.muster-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  align-items: start;
+}
+
+/* ================= COLUNA ESQUERDA ================= */
+.locations {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 14px;
+}
+
+.locations h2 {
+  margin: 6px 0 12px;
+  font-size: 18px;
+}
+
+/* ================= LOCATION ITEM ================= */
+.location-item {
+  display: grid;
+  grid-template-columns: 1.4fr 0.6fr 0.6fr;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  margin-bottom: 6px;
+  border-radius: 12px;
+  background: #efeaff;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+/*aqui abaixo muda as cores do location*/
+.location-item.mode-muster {
+  background: #f1ecff;
+  box-shadow: 0 4px 10px rgba(88, 63, 191, 0.25);
+}
+
+.location-item.mode-abandon {
+  background: #f1ecff;
+  box-shadow: 0 4px 10px rgba(88, 63, 191, 0.25);
+}
+
+
+
+.loc-name {
+  font-weight: 600;
+}
+
+/* MUSTER / ABANDON VALUES */
+.loc-muster,
+.loc-abandon {
+  text-align: center;
+  padding: 6px 0;
+  border-radius: 8px;
+  font-weight: 700;
+}
+
+/* cores padrão (referência) */
+.loc-muster {
+  background: #cfc6f2; /*cor da celula com numero*/
+  color: #271574;
+}
+
+.loc-abandon {
+  background: #cfc6f2;
+  color: #271574;
+}
+
+
+/* estado normal */
+.loc-muster,
+.loc-abandon {
+  opacity: 0.4;
+  font-weight: 500;
+}
+
+/* modo MUSTER */
+.location-item.mode-muster .loc-muster {
+  opacity: 1;
+  font-weight: 800;
+}
+
+.location-item.mode-muster .loc-abandon {
+  opacity: 0.5;
+}
+
+/* modo ABANDON */
+.location-item.mode-abandon .loc-abandon {
+  opacity: 1;
+  font-weight: 800;
+}
+
+.location-item.mode-abandon .loc-muster {
+  opacity: 0.52;
+}
+
+
+
+
+/* ================= MODOS ATIVOS ================= */
+body.muster-mode .loc-muster {
+  background: #6f5cc2;
+  color: #fff;
+}
+
+body.muster-mode .loc-abandon {
+  opacity: 0.5;
+}
+
+body.abandon-mode .loc-abandon {
+  background: #6f5cc2;
+  color: #fff;
+}
+
+body.abandon-mode .loc-muster {
+  opacity: 0.5;
+}
+
+/* ================= SELEÇÃO ================= */
+.location-item.selected {
+  outline: 3px solid #e52222; /*cor da borda quando seleçao*/
+  box-shadow: 0 0 0 2px #6f5cc2;
+}
+
+/* ================= BLOQUEADO ================= */
+.location-item.blocked {
+  background: #ffd6d6;
+  color: #900;
+  pointer-events: none;
+}
+
+.location-item.blocked .loc-muster,
+.location-item.blocked .loc-abandon {
+  background: #ffb3b3;
+  color: #900;
+}
+
+/* ================= CONTROLE DE LOCAIS ================= */
+
+
+/* ================= COLUNA DIREITA ================= */
+.panel {
+  display: grid;
+  grid-template-rows: auto auto auto auto;
+  gap: 12px;
+}
+
+/* ================= STATUS ================= */
+.status {
+  border-radius: 20px;
+  padding: 12px;
+  text-align: center;
+}
+
+.status h3 {
+  margin: 0;
+  font-size: 12px;
+}
+
+.status span {
+  display: block;
+  font-size: 32px;
+  font-weight: bold;
+  margin-top: 6px;
+}
+
+.missing {
+  background: #ffe1e1;
+  color: #ff0000;
+  min-height: 110px;              /* mais alto */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.missing h3 {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.missing span {
+  font-size: 48px;                /* número maior */
+  font-weight: 900;               /* mais forte */
+  margin-top: 8px;
+}
+
+/* quando missing = 0 (tudo certo) */
+.missing.ok {
+  background: #dff5e3;
+  color: #0b7a35;
+}
+.missing.ok span {color: #0b7a35;}
+.status.missing.ok {
+  background: #dff5e3;
+}
+
+
+/* quando missing < 0 (erro grave) */
+.missing.error {
+  background: #ffd6d6;
+  color: #8b0000;
+}
+
+
+.onboard {
+  background: #e7ddff;
+}
+
+.count {
+  background: #e7ddff;
+}
+
+/* ================= KEYPAD ================= */
+.keypad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.keypad button {
+  padding: 9px 0;
+  font-size: 32px;
+  border: 1px solid #d6ccf5;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.12);
+  border-radius: 4px;
+  background: #f5f1f1;
+  cursor: pointer;
+}
+
+.keypad .wide { /*wide é o )*/
+  grid-column: span 3;
+  padding: 9px 0;
+}
+
+.keypad .action {
+  background: #6f5cc2;
+  color: #fff;
+}
+
+/* ================= POPUP ONBOARD ================= */
+.onboard-popup {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.onboard-popup.hidden {
+  display: none;
+}
+
+.popup-box {
+  background: #fff;
+  padding: 20px;
+  border-radius: 16px;
+  width: 280px;
+  text-align: center;
+}
+
+.popup-box h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.popup-box input {
+  width: 100%;
+  height: 42px;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 18px;
+  border: 1px solid #ccc;
+}
+
+.popup-actions {
+  display: flex;
+  margin-top: 15px;
+  gap: 10px;
+}
+
+.popup-actions button {
+  flex: 1;
+  height: 38px;
+   border-radius: 10px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.popup-actions .confirm {
+  background: #6f5cc2;
+  color: #fff;
+}
+
+.popup-actions .cancel {
+  background: #ddd;
+}
+.keypad-actions {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.keypad-actions .action {
+  height: 44px;
+  border-radius: 12px;
+  border: none;
+  background: #6f5cc2;
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.keypad-actions .timeout {
+  background: #c0392b;
+}
+
+.keypad-actions .timeout:hover {
+  background: #a93226;
+}
+
+/* Caixa de mensagem */
+.info-box {
+  margin-top: 10px;
+  width: 100%;
+  height: 42px;
+  resize: none;
+  border-radius: 12px;
+  border: none;
+  padding: 8px 10px;
+  font-size: 13px;
+  background: #e7ddff;
+  color: #333;
+}
+/* TIME OUT */
+.keypad .timeout {
+    background: #6f5cc2;
+  color: #fff;
+  font-weight: 700;
+}
+
+.keypad .timeout.timeout-active {
+  background: #b00000;
+  color: #fff;
+}
+.loc-name.editing {
+  background: #fff3cd;
+  border-radius: 6px;
+  padding: 2px 6px;
+  outline: 2px dashed #ff9800;
+}
+.hidden {
+  display: none !important;
+}
+
