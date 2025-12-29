@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Comparador de Cartões</title>
+  <link rel="stylesheet" href="cartoes.css">
+  
+  <!-- PDF.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+</head>
+
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+<header class="top">
+  <div class="top-inner">
+    <h1>Comparador de Cartões</h1>
+    <p>PDF de ontem × PDF de hoje</p>
+
+    <a href="../index.html" class="btn-voltar">
+      ← Voltar
+    </a>
+  </div>
+</header>
+
+
+  <!-- CONTEÚDO -->
+  <main class="apps">
+
+    <!-- UPLOAD -->
+    <div class="app-card cartoes">
+      <h2>Arquivos PDF</h2>
+
+<div class="drop-container">
+
+  <div>
+    <p><strong>PDF de ontem</strong></p>
+    <div class="drop-zone" id="dropYesterday">
+      <button class="remove-file hidden" type="button">×</button>
+      <img src="img/pdf.png" class="pdf-icon hidden">
+      <span>Arraste o PDF de ontem aqui<br>ou clique para escolher</span>
+      <input type="file" id="pdfOntem" accept="application/pdf">
+    </div>
+  </div>
+
+  <div>
+    <p><strong>PDF de hoje</strong></p>
+    <div class="drop-zone" id="dropToday">
+      <button class="remove-file hidden" type="button">×</button>
+      <img src="img/pdf.png" class="pdf-icon hidden">
+      <span>Arraste o PDF de hoje aqui<br>ou clique para escolher</span>
+      <input type="file" id="pdfHoje" accept="application/pdf">
+    </div>
+  </div>
+
+</div>
+
+
+      <button onclick="compararPDFs()" style="
+        margin-top:20px;
+        padding:10px 20px;
+        border:none;
+        border-radius:8px;
+        background:#ff8c00;
+        color:#fff;
+        font-size:16px;
+        cursor:pointer;
+      ">
+        Comparar
+      </button>
+    </div>
+
+    <!-- RESULTADO -->
+    <div class="app-card">
+      <h2>Resultado</h2>
+
+      <button onclick="imprimirResultado()" style="
+  margin-bottom:15px;
+  padding:8px 16px;
+  border:none;
+  border-radius:8px;
+  background:#1e66d0;
+  color:#fff;
+  font-size:14px;
+  cursor:pointer;
+">
+  🖨️ Imprimir Resultado
+</button>
+
+      <div id="resultado"></div>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <a href="../index.html" style="color:#fff; text-decoration:none;">
+      ⬅ Voltar ao Portal
+    </a>
+  </footer>
+
+</div>
+
+<script>
+  // PDF.js worker
+  pdfjsLib.GlobalWorkerOptions.workerSrc =
+    'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+  // Extrai texto do PDF
+  async function extrairTextoPDF(file) {
+    const buffer = await file.arrayBuffer();
+    const pdf = await pdfjsLib.getDocument({ data: buffer }).promise;
+
+    let texto = "";
+    for (let i = 1; i <= pdf.numPages; i++) {
+      const page = await pdf.getPage(i);
+      const content = await page.getTextContent();
+      content.items.forEach(item => texto += item.str + " ");
+    }
+    return texto;
+  }
+
+  // Extrai cartões por LB
+  function extrairCartoesPorLB(texto) {
+    const tokens = texto.split(/\s+/);
+    const resultado = {};
+    const ocorrencias = {};
+    let lbAtual = null;
+
+    for (const t of tokens) {
+
+      // Detecta LB1, LB2, LB3, LB4
+      if (/^LB[1-4]$/.test(t)) {
+        lbAtual = t;
+        if (!resultado[lbAtual]) resultado[lbAtual] = new Set();
+        continue;
+      }
+
+      // Detecta cartão: 3 dígitos com letra opcional
+      if (lbAtual && /^\d{3}(\/[A-Z])?$/.test(t)) {
+        resultado[lbAtual].add(t);
+        ocorrencias[t] = (ocorrencias[t] || 0) + 1;
+      }
+    }
+
+    return { resultado, ocorrencias };
+  }
+
+  // Compara LB por LB
+  function compararPorLB(ontem, hoje) {
+    const saida = {};
+
+    for (const lb in ontem) {
+      saida[lb] = { remover: [], adicionar: [] };
+
+      const o = ontem[lb] || new Set();
+      const h = hoje[lb] || new Set();
+
+      o.forEach(c => { if (!h.has(c)) saida[lb].remover.push(c); });
+      h.forEach(c => { if (!o.has(c)) saida[lb].adicionar.push(c); });
+    }
+
+    return saida;
+  }
+
+function renderLB(lb, resultado) {
+  const r = resultado[lb];
+
+  if (!r || (r.remover.length === 0 && r.adicionar.length === 0)) {
+    return `
+      <div class="result-lb empty">
+        <h3>${lb}</h3>
+        <p>Sem alterações</p>
+      </div>
+    `;
+  }
+
+  return `
+    <div class="result-lb">
+      <h3>${lb}</h3>
+
+      <div class="result-grid">
+        <div class="result-box remover">
+          <h4>🔴 REMOVER</h4>
+          <ul>
+            ${r.remover.length ? r.remover.map(c => `<li>${c}</li>`).join("") : "<li>-</li>"}
+          </ul>
+        </div>
+
+        <div class="result-box adicionar">
+          <h4>🟢 ADICIONAR</h4>
+          <ul>
+            ${r.adicionar.length ? r.adicionar.map(c => `<li>${c}</li>`).join("") : "<li>-</li>"}
+          </ul>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+
+
+  // Função principal
+  async function compararPDFs() {
+    const ontemFile = document.getElementById("pdfOntem").files[0];
+    const hojeFile = document.getElementById("pdfHoje").files[0];
+
+    if (!ontemFile || !hojeFile) {
+      alert("Selecione os dois PDFs.");
+      return;
+    }
+
+    const textoOntem = await extrairTextoPDF(ontemFile);
+    const textoHoje = await extrairTextoPDF(hojeFile);
+
+    const dadosOntem = extrairCartoesPorLB(textoOntem);
+    const dadosHoje = extrairCartoesPorLB(textoHoje);
+
+    // Remove números que aparecem em mais de uma LB (ex: 162, 164)
+    function limpar(dados) {
+      const limpo = {};
+      for (const lb in dados.resultado) {
+        limpo[lb] = new Set(
+          [...dados.resultado[lb]].filter(c =>
+            c.includes("/") || dados.ocorrencias[c] === 1
+          )
+        );
+      }
+      return limpo;
+    }
+
+    const ontem = limpar(dadosOntem);
+    const hoje = limpar(dadosHoje);
+
+    const resultado = compararPorLB(ontem, hoje);
+
+    // Renderização
+    
+const div = document.getElementById("resultado");
+div.innerHTML = `
+  <div class="result-cross">
+    ${renderLB("LB1", resultado)}
+    ${renderLB("LB3", resultado)}
+    ${renderLB("LB2", resultado)}
+    ${renderLB("LB4", resultado)}
+  </div>
+`;
+
+
+
+  }
+  function imprimirResultado() {
+  const conteudo = document.getElementById("resultado").innerHTML;
+
+  const janela = window.open("", "", "width=800,height=600");
+  janela.document.write(`
+    <html>
+      <head>
+        <title>Resultado - Comparador de Cartões</title>
+        
+        <style>
+  body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+  }
+
+  h3 {
+    margin-bottom: 10px;
+  }
+
+  .result-cross {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 24px;
+  }
+
+  .result-lb {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 12px;
+    page-break-inside: avoid;
+  }
+
+  .result-lb.empty {
+    opacity: 0.6;
+    text-align: center;
+  }
+
+  .result-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .result-box {
+    border-radius: 8px;
+    padding: 10px;
+    border: 1px solid #ddd;
+  }
+
+  .result-box.remover {
+    border-left: 6px solid #d32f2f;
+  }
+
+  .result-box.adicionar {
+    border-left: 6px solid #388e3c;
+  }
+
+  ul {
+    padding-left: 16px;
+    margin: 0;
+  }
+
+  li {
+    margin-bottom: 4px;
+  }
+</style>
+
+
+      </head>
+      <body>
+        ${conteudo}
+      </body>
+    </html>
+  `);
+
+  janela.document.close();
+  janela.focus();
+  janela.print();
+}
+// Bloqueia botão direito
+document.addEventListener("contextmenu", function (e) {
+  e.preventDefault();
+  alert("👀 Para de ser curioso 😄");
+});
+
+document.addEventListener("keydown", function (e) {
+  if (
+    e.key === "F12" ||
+    (e.ctrlKey && e.key.toLowerCase() === "u") ||
+    (e.ctrlKey && e.shiftKey && ["i", "c", "j"].includes(e.key.toLowerCase()))
+  ) {
+    e.preventDefault();
+    alert("👀 Curiosidade é boa, mas aqui não 😉");
+  }
+});
+
+
+</script>
+<script src="cartoes.js"></script>
+</body>
+</html>
