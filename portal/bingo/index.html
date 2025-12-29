@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Bingo Digital</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    
+
+  <!-- TOPO -->
+  <div class="sorteador">
+    <div id="letra">B</div>
+    <div id="numero">12</div>
+  </div>
+
+  <button id="sortear">SORTEAR</button>
+
+  <label class="voz">
+    <input type="checkbox" id="vozAtiva">
+    Ativar voz no sorteio
+  </label>
+
+  <!-- RESULTADOS -->
+<div class="painel-bingo">
+
+  <div class="coluna-letras">
+    <div>B</div>
+    <div>I</div>
+    <div>N</div>
+    <div>G</div>
+    <div>O</div>
+  </div>
+
+  <div class="coluna-numeros">
+    <div class="linha" id="linha-B"></div>
+    <div class="linha" id="linha-I"></div>
+    <div class="linha" id="linha-N"></div>
+    <div class="linha" id="linha-G"></div>
+    <div class="linha" id="linha-O"></div>
+  </div>
+
+</div>
+
+
+  <!-- OPÇÕES -->
+  <div class="menu-lateral">
+  <button id="gerarCartelas">🎫 Criar Cartelas</button>
+  <button id="voltar">⬅ Voltar</button>
+</div>
+
+
+  <script src="script.js"></script>
+</body>
+</html>
