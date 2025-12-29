@@ -55,8 +55,6 @@
   </div>
 
 </div>
-
-
       <button onclick="compararPDFs()" style="
         margin-top:20px;
         padding:10px 20px;
@@ -70,6 +68,8 @@
         Comparar
       </button>
     </div>
+<div id="debug"></div>
+
 
     <!-- RESULTADO -->
     <div class="app-card">
@@ -122,30 +122,35 @@
   }
 
   // Extrai cartões por LB
-  function extrairCartoesPorLB(texto) {
-    const tokens = texto.split(/\s+/);
-    const resultado = {};
-    const ocorrencias = {};
-    let lbAtual = null;
+function extrairCartoesPorLB(texto) {
+  const tokens = texto.split(/\s+/);
 
-    for (const t of tokens) {
+  const resultado = {
+    LB1: new Set(),
+    LB2: new Set(),
+    LB3: new Set(),
+    LB4: new Set()
+  };
 
-      // Detecta LB1, LB2, LB3, LB4
-      if (/^LB[1-4]$/.test(t)) {
-        lbAtual = t;
-        if (!resultado[lbAtual]) resultado[lbAtual] = new Set();
-        continue;
-      }
+  const ocorrencias = {};
 
-      // Detecta cartão: 3 dígitos com letra opcional
-      if (lbAtual && /^\d{3}(\/[A-Z])?$/.test(t)) {
-        resultado[lbAtual].add(t);
-        ocorrencias[t] = (ocorrencias[t] || 0) + 1;
-      }
-    }
+  for (let i = 0; i < tokens.length - 1; i++) {
+    const cartao = tokens[i].trim().toUpperCase();
+    const lb = tokens[i + 1].trim().toUpperCase();
 
-    return { resultado, ocorrencias };
+    // 🔒 REGRA: cartão SEMPRE com /A ou /B
+    const cartaoValido = /^\d{3}\/[A-Z]$/.test(cartao);
+
+    const lbValida = /^LB[1-4]$/.test(lb);
+
+    if (!cartaoValido || !lbValida) continue;
+
+    resultado[lb].add(cartao);
+    ocorrencias[cartao] = (ocorrencias[cartao] || 0) + 1;
   }
+
+  return { resultado, ocorrencias };
+}
 
   // Compara LB por LB
   function compararPorLB(ontem, hoje) {
