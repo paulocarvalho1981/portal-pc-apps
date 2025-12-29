@@ -24,6 +24,7 @@
   text-align: center;
   cursor: pointer;
   transition: all 0.25s ease;
+  box-sizing: border-box;
 }
 
 /* Texto interno */
@@ -87,16 +88,8 @@ body {
   margin-bottom: 12px;
   font-size: 20px;
 }
-.drop-zone {
-  border: 2px dashed #ff9800;
-  border-radius: 12px;
-  padding: 26px;
-  text-align: center;
-  background: #fffaf0;
-  cursor: pointer;
-  transition: 0.2s ease;
-  margin-bottom: 14px;
-}
+
+
 .pdf-icon {
   width: 48px;
   height: auto;
@@ -112,6 +105,7 @@ body {
   align-items: center;
   border: 2px solid #4caf50;
   background: #e8f5e9;
+  padding: 30px;
 }
 
 .drop-zone.loaded span {
@@ -119,6 +113,7 @@ body {
   font-weight: 600;
   font-size: 14px;
 }
+
 button {
   border: none;
   border-radius: 10px;
@@ -246,7 +241,7 @@ button:active {
 
 
 .drop-zone.loaded .remove-file {
-  display: block;
+  display: flex;
 }
 
 .remove-file:hover {
