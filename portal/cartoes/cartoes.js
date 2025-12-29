@@ -1,9 +1,28 @@
+/* =========================
+   PDF.js WORKER
+========================= */
+pdfjsLib.GlobalWorkerOptions.workerSrc =
+  "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+
+
+/* =========================
+   DRAG & DROP / UPLOAD
+========================= */
 document.querySelectorAll(".drop-zone").forEach(zone => {
   const input = zone.querySelector("input[type='file']");
   const text = zone.querySelector("span");
 
   // clique abre input
-  zone.addEventListener("click", () => input.click());
+  zone.addEventListener("click", e => {
+  if (e.target.tagName !== "INPUT") {
+    input.click();
+  }
+});
+
+input.addEventListener("click", e => {
+  e.stopPropagation();
+});
+
 
   // drag over
   zone.addEventListener("dragover", e => {
@@ -39,29 +58,97 @@ document.querySelectorAll(".drop-zone").forEach(zone => {
       text.textContent = input.files[0].name;
       zone.classList.add("loaded");
     } else {
-      text.textContent = "Nenhum arquivo escolhido";
+      text.textContent = zone.dataset.placeholder || "Nenhum arquivo escolhido";
       zone.classList.remove("loaded");
     }
   });
 });
 
-// validação no botão comparar
-document.getElementById("comparar").addEventListener("click", () => {
-  const ontem = document.getElementById("pdfOntem");
-  const hoje = document.getElementById("pdfHoje");
 
-  if (!ontem.files || ontem.files.length === 0) {
+/* =========================
+   LEITURA DO PDF
+========================= */
+async function extrairTextoPDF(file) {
+  const buffer = await file.arrayBuffer();
+  const pdf = await pdfjsLib.getDocument({ data: buffer }).promise;
+
+  let texto = "";
+
+  for (let i = 1; i <= pdf.numPages; i++) {
+    const page = await pdf.getPage(i);
+    const content = await page.getTextContent();
+    content.items.forEach(item => {
+      texto += item.str + " ";
+    });
+  }
+
+  return texto;
+}
+
+
+/* =========================
+   EXTRAÇÃO NÚMERO + BALEEIRA
+========================= */
+function extrairNumerosEBaleeiras(texto) {
+  const tokens = texto.split(/\s+/);
+  const resultados = [];
+
+  const regexNumero = /^\d{3}(\/[A-Z])?$/; // ex: 413 ou 413/A
+  const regexLB = /^LB[1-4]$/;             // LB1 a LB4
+
+  for (let i = 0; i < tokens.length; i++) {
+    const token = tokens[i];
+
+    if (!regexNumero.test(token)) continue;
+
+    // procura LB logo após (janela curta)
+    for (let j = i + 1; j <= i + 5 && j < tokens.length; j++) {
+      if (regexLB.test(tokens[j])) {
+        resultados.push({
+          numero: token,
+          lb: tokens[j]
+        });
+        break;
+      }
+    }
+  }
+
+  return resultados;
+}
+
+
+/* =========================
+   BOTÃO COMPARAR (DEBUG)
+========================= */
+document.getElementById("comparar").addEventListener("click", async () => {
+  const ontemInput = document.getElementById("pdfOntem");
+  const hojeInput = document.getElementById("pdfHoje");
+
+  if (!ontemInput.files.length) {
     alert("Selecione o PDF de ontem");
     return;
   }
 
-  if (!hoje.files || hoje.files.length === 0) {
+  if (!hojeInput.files.length) {
     alert("Selecione o PDF de hoje");
     return;
   }
 
-  console.log("PDF Ontem:", ontem.files[0].name);
-  console.log("PDF Hoje:", hoje.files[0].name);
+  const ontemFile = ontemInput.files[0];
+  const hojeFile = hojeInput.files[0];
 
-  // aqui entra sua lógica de comparação
+  // leitura APENAS do PDF de ontem (por enquanto)
+  const textoOntem = await extrairTextoPDF(ontemFile);
+  const dadosOntem = extrairNumerosEBaleeiras(textoOntem);
+
+  // DEBUG NA TELA
+  const resultadoDiv = document.getElementById("resultado");
+  resultadoDiv.innerHTML = `
+    <h3>PDF de Ontem</h3>
+    <ul>
+      ${dadosOntem.map(d => `<li>${d.numero} → ${d.lb}</li>`).join("")}
+    </ul>
+  `;
+
+  console.log("PDF Ontem:", dadosOntem);
 });
