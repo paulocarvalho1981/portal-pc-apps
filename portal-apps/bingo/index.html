@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Bingo Digital</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- TOPO FIXO -->
+<header class="top-bar">
+  <button id="voltar" class="btn-top">⬅ Voltar</button>
+
+  <div class="top-actions">
+    <button id="reiniciar" class="btn-top btn-reset">🔄 Reiniciar</button>
+    <button id="gerarCartelas" class="btn-top">🎫 Cartelas</button>
+  </div>
+</header>
+
+<!-- CONTEÚDO PRINCIPAL -->
+<main class="conteudo-bingo">
+
+  <!-- SORTEADOR -->
+ <div class="sorteador-area">
+
+  <!-- BOLA PRINCIPAL -->
+  <div class="bola-principal">
+    <div id="letra">B</div>
+    <div id="numero">00</div>
+  </div>
+
+  <!-- ÚLTIMOS NÚMEROS -->
+  <div class="ultimos">
+    <div class="bola-mini">–</div>
+    <div class="bola-mini">–</div>
+    <div class="bola-mini">–</div>
+  </div>
+
+</div>
+
+
+  <button id="sortear">SORTEAR</button>
+
+  <label class="voz">
+    <input type="checkbox" id="vozAtiva">
+    Ativar voz no sorteio
+  </label>
+
+  <!-- RESULTADOS -->
+  <div class="painel-bingo">
+    <div class="coluna-letras">
+      <div>B</div>
+      <div>I</div>
+      <div>N</div>
+      <div>G</div>
+      <div>O</div>
+    </div>
+
+    <div class="coluna-numeros">
+      <div class="linha" id="linha-B"></div>
+      <div class="linha" id="linha-I"></div>
+      <div class="linha" id="linha-N"></div>
+      <div class="linha" id="linha-G"></div>
+      <div class="linha" id="linha-O"></div>
+    </div>
+  </div>
+
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>

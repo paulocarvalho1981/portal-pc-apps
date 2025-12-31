@@ -1,0 +1,117 @@
+body {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+
+.drop-zone {
+  border: 2px dashed #ff8c00;
+  padding: 40px;
+  text-align: center;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.drop-zone input {
+  display: none;
+}
+
+h2 {
+  margin-top: 30px;
+}
+
+ul {
+  padding-left: 20px;
+}
+.upload-grid,
+/* =========================
+   RESULTADOS LADO A LADO
+========================= */
+.resultado-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 20px;
+}
+
+.resultado-coluna {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 12px;
+  background: #fafafa;
+}
+.hidden {
+  display: none;
+}
+/* =========================
+   COMPARAÇÃO LADO A LADO
+========================= */
+.comparacao-lb {
+  margin-top: 20px;
+}
+
+.comparacao-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.comparacao-col {
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 10px;
+  background: #fafafa;
+}
+
+.comparacao-col h5 {
+  margin-top: 0;
+}
+.btn-voltar {
+  display: inline-block;
+  margin-bottom: 12px;
+  padding: 8px 14px;
+  background: #444;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.btn-voltar:hover {
+  background: #222;
+}
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.btn-voltar,
+.btn-limpar {
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* Voltar */
+.btn-voltar {
+  background: #444;
+  color: #fff;
+  text-decoration: none;
+}
+
+.btn-voltar:hover {
+  background: #222;
+}
+
+/* Limpar */
+.btn-limpar {
+  background: #c62828;
+  color: #fff;
+  border: none;
+}
+
+.btn-limpar:hover {
+  background: #a61c1c;
+}
