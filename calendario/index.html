@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Calendário Offshore</title>
+  <link rel="stylesheet" href="calendario.css">
+</head>
+<body>
+
+<div class="top-bar">
+  <a href="../index.html" class="btn-voltar">← Voltar</a>
+
+  <div class="top-title">
+    <h1>Calendário Offshore</h1>
+    <p>Escala 14 / 21 / 28 × Período personalizado</p>
+  </div>
+
+  <button onclick="limpar()">Limpar</button>
+  <button onclick="window.print()">Imprimir Calendário</button>
+
+</div>
+
+
+<h1>Calendário Offshore</h1>
+
+<div class="controles">
+  <div>
+    <label>Escala:</label>
+    <select id="escala">
+      <option value="14">14 x 14</option>
+      <option value="21">21 x 21</option>
+      <option value="28" selected>28 x 28</option>
+    </select>
+  </div>
+
+  <div>
+    <label>Período:</label>
+    <select id="meses">
+      <option value="3">3 meses</option>
+      <option value="6">6 meses</option>
+      <option value="9">9 meses</option>
+      <option value="12" selected>12 meses</option>
+    </select>
+  </div>
+</div>
+
+<p class="info">
+  Clique em um dia para definir o <strong>Dia 1 (Embarque)</strong>
+</p>
+
+
+<div id="calendario"></div>
+
+<script src="calendario.js"></script>
+</body>
+</html>

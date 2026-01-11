@@ -42,42 +42,83 @@ document.addEventListener("DOMContentLoaded", () => {
   const btnMuster = document.getElementById("btnMuster");
   const btnAbandon = document.getElementById("btnAbandon");
 
+
   function setMode(newMode) {
-    mode = newMode;
-    btnMuster.classList.toggle("active", mode === "muster");
-    btnAbandon.classList.toggle("active", mode === "abandon");
+  mode = newMode;
+  btnMuster.classList.toggle("active", mode === "muster");
+  btnAbandon.classList.toggle("active", mode === "abandon");
 
-const btnAddLocation = document.getElementById("btnAddLocation");
-const btnRemoveLocation = document.getElementById("btnRemoveLocation");
-if (btnAddLocation) {
-  btnAddLocation.addEventListener("click", () => {
-    console.log("ADD CLICK");
+  selectedLocation = null;
+  inputBuffer = "";
+
+  document.querySelectorAll(".location-item")
+    .forEach(i => i.classList.remove("selected"));
+
+  /* >>> ADICIONA AQUI <<< */
+  document.querySelectorAll(".location-item").forEach(item => {
+    item.classList.toggle("mode-muster", mode === "muster");
+    item.classList.toggle("mode-abandon", mode === "abandon");
   });
+  /* >>> ATÉ AQUI <<< */
+
+btnMuster.addEventListener("click", () => setMode("muster"));
+btnAbandon.addEventListener("click", () => setMode("abandon"));
+
+
+  render();
 }
 
-if (btnRemoveLocation) {
-  btnRemoveLocation.addEventListener("click", () => {
-    console.log("REMOVE CLICK");
-  });
-}
 
-
-
-    selectedLocation = null;
-    inputBuffer = "";
-
-    document.querySelectorAll(".location-item")
-      .forEach(i => i.classList.remove("selected"));
-
-    render();
-  }
-
-  btnMuster.addEventListener("click", () => setMode("muster"));
-  btnAbandon.addEventListener("click", () => setMode("abandon"));
 
   /* ======================
      SELEÇÃO DE LOCATION
   ====================== */
+document.querySelectorAll(".edit-icon").forEach(icon => {
+  icon.addEventListener("click", (e) => {
+    e.stopPropagation(); // não selecionar a location
+
+    const nameSpan = icon.closest(".loc-name");
+    const originalText = nameSpan.childNodes[0].textContent.trim();
+
+    // evita abrir duas edições
+    if (nameSpan.classList.contains("editing")) return;
+
+    nameSpan.classList.add("editing");
+
+    const input = document.createElement("input");
+    input.type = "text";
+    input.value = originalText;
+    input.style.fontSize = "inherit";
+    input.style.width = "70%";
+
+    // limpa texto atual
+    nameSpan.childNodes[0].textContent = "";
+    nameSpan.insertBefore(input, icon);
+
+    input.focus();
+    input.select();
+
+    function finalize(save) {
+      const newName = save && input.value.trim()
+        ? input.value.trim()
+        : originalText;
+
+      input.remove();
+      nameSpan.childNodes[0].textContent = newName + " ";
+      nameSpan.classList.remove("editing");
+    }
+
+    input.addEventListener("keydown", (ev) => {
+      if (ev.key === "Enter") finalize(true);
+      if (ev.key === "Escape") finalize(false);
+    });
+
+    input.addEventListener("blur", () => finalize(true));
+  });
+});
+
+
+
   document.querySelectorAll(".location-item").forEach(item => {
     item.addEventListener("click", () => {
       document.querySelectorAll(".location-item")
