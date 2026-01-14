@@ -129,6 +129,9 @@ main.apps {
   border-top: 6px solid #00ff11;
 }
 
+.app-card.certs {
+  border-top: 6px solid #ec7b11;
+}
 /* ===== CARD DESABILITADO ===== */
 .app-card.disabled {
   opacity: 0.55;
@@ -154,6 +157,10 @@ footer {
   font-size: 14px;
   color: #fff;
   opacity: 0.8;
+  color: inherit;        /* usa a mesma cor do texto */
+  text-decoration: none; /* remove o sublinhado */
+  font-weight: inherit;  /* não fica com cara de link */
+  cursor: default;       /* evita cursor de link */
 }
 
 footer a {
@@ -275,4 +282,3 @@ footer a:active {
 .app-card.calendario {
   border-top: 6px solid #2ecc71; /* verde, combinando com o calendário */
 }
-
