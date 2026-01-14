@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Lista de Certificados</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header class="header">
+<img src="logoto.png" alt="Logo da empresa" class="logo">
+  <div class="header-text">
+      <h1>Lista de Certificados</h1>
+      <span>Controle de Treinamentos Offshore</span>
+  </div>  
+</header>
+  <!-- BOTÃO VOLTAR -->
+  <a href="../index.html" class="btn-voltar">⬅ Voltar</a>
+
+
+  <!-- FORMULÁRIO -->
+  <div class="form">
+    <input type="text" id="nome" placeholder="Nome completo" />
+
+    <select id="certificado">
+  <option value="">Selecione o certificado</option>
+
+  <optgroup label="Offshore / ANP / Marinha">
+    <option>CBSP</option>
+    <option>HUET</option>
+    <option>T-HUET</option>
+    <option>MCIA</option>
+    <option>EBCP</option>
+  </optgroup>
+
+  <optgroup label="NR-10 – Eletricidade">
+    <option>NR-10 – Básico</option>
+    <option>NR-10 – SEP / Alta Tensão (HV)</option>
+    <option>NR-10 – Reciclagem</option>
+  </optgroup>
+
+  <optgroup label="Normas Regulamentadoras">
+    <option>NR-33</option>
+    <option>NR-35</option>
+    <option>NR-37 – Básico</option>
+    <option>NR-37 – Avançado</option>
+    <option>NR-37 – Transporte de Pessoas</option>
+    <option>NR-12 – Máquinas e Equipamentos</option>
+    <option>NR-13 – Caldeiras e Vasos de Pressão</option>
+  </optgroup>
+
+  <optgroup label="NR-34 – Naval / Industrial">
+    <option>NR-34 – Trabalho a Quente</option>
+    <option>NR-34 – Fire Watcher</option>
+  </optgroup>
+
+  <optgroup label="Emergência e Resposta">
+    <option>Primeiros Socorros</option>
+    <option>Combate a Incêndio</option>
+    <option>Brigada de Emergência</option>
+    <option>Abandono de Unidade</option>
+    <option>Fire Team Member</option>
+  </optgroup>
+
+  <optgroup label="Operacional / Permissões">
+    <option>Hot Work</option>
+    <option>Fire Watcher</option>
+    <option>Dangerous Goods</option>
+  </optgroup>
+
+  <optgroup label="Gestão e Programas">
+    <option>SSP</option>
+    <option>Ata CIPL(A)T</option>
+  </optgroup>
+
+  <optgroup label="Outros">
+    <option>Outro</option>
+  </optgroup>
+</select>
+
+
+    <button onclick="adicionar()">Adicionar</button>
+  </div>
+
+  <!-- BOTÕES -->
+  <div class="acoes">
+    <button onclick="ordenar()">Ordenar A–Z</button>
+    <button onclick="window.print()">Imprimir</button>
+  </div>
+
+  <!-- TABELA -->
+  <table>
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Certificado</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody id="lista"></tbody>
+  </table>
+
+  <script src="script.js"></script>
+</body>
+</html>
