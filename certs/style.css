@@ -184,29 +184,38 @@ tbody tr:nth-child(even) {
    HEADER / LOGO
 ========================= */
 .header {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr;
   align-items: center;
-  gap: 20px;
-  margin-bottom: 24px;
-  padding-bottom: 14px;
-  border-bottom: 2px solid #e5e7eb;
+
+  padding: 24px 30px;
+  margin-bottom: 25px;
+
+  border-bottom: 2px solid #000;
 }
 
+/* LOGO */
 .logo {
-  height: 80px;
-  width: auto;
+  height: 60px;          /* logo maior */
+  margin-right: 10px;
+}
+
+/* TEXTO DO CABEÇALHO */
+.header-text {
+  text-align: center;
 }
 
 .header-text h1 {
-  margin: 0;
-  font-size: 26px;
-  font-weight: 600;
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 4px;
 }
 
 .header-text span {
   font-size: 14px;
-  color: #6b7280;
+  opacity: 0.85;
 }
+
 
 /* =========================
    IMPRESSÃO – LOGO
@@ -254,4 +263,13 @@ tbody tr:nth-child(even) {
   .col-remover {
     display: none;
   }
+}
+@media print {
+
+  /* esconder a coluna APAGAR (3ª coluna) */
+  table th:nth-child(3),
+  table td:nth-child(3) {
+    display: none !important;
+  }
+
 }
