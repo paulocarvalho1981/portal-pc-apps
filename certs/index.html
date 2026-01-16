@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+
 <header class="header">
 <img src="logoto.png" alt="Logo da empresa" class="logo">
   <div class="header-text">
@@ -78,7 +79,7 @@
 </select>
 
 
-    <button onclick="adicionar()">Adicionar</button>
+    <button type="button" onclick="adicionar()">Adicionar</button>
   </div>
 
   <!-- BOTÕES -->
@@ -93,7 +94,7 @@
       <tr>
         <th>Nome</th>
         <th>Certificado</th>
-        <th></th>
+        <th class="no-print">Apagar</th>
       </tr>
     </thead>
     <tbody id="lista"></tbody>
