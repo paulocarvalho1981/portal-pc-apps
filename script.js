@@ -14,3 +14,23 @@
       input = [];
     }
   });
+  document.addEventListener("DOMContentLoaded", () => {
+
+  const containerOk = document.getElementById("apps-ok");
+  const containerJogos = document.getElementById("apps-jogos");
+
+  const cards = document.querySelectorAll(".app-card");
+
+  cards.forEach(card => {
+    const tipo = card.dataset.tipo;
+
+    if (tipo === "ok") {
+      containerOk.appendChild(card);
+    }
+
+    if (tipo === "jogo") {
+      containerJogos.appendChild(card);
+    }
+  });
+
+});
