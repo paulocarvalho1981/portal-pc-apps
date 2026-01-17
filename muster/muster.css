@@ -1,6 +1,26 @@
-/* ======================
-   FORÇAR TEMA CLARO
-====================== */
+:root {
+  /* CORE */
+  --primary: #1f3a5f;        /* azul offshore */
+  --secondary: #2563eb;      /* ações secundárias */
+
+  /* NEUTROS */
+  --neutral-100: #f8fafc;
+  --neutral-200: #e5e7eb;
+  --neutral-300: #cbd5e1;
+  --neutral-400: #94a3b8;
+  --neutral-text: #1f2937;
+
+  /* STATUS */
+  --success: #1e7f4f;
+  --success-bg: #e6f4ec;
+
+  --danger: #eb0f0f;
+  --danger-bg: #fdecea;
+
+  --warning: #b45309;
+  --warning-bg: #fff7ed;
+}
+
 html {
   color-scheme: light;
 }
@@ -28,7 +48,7 @@ body {
   justify-content: space-between;
   padding: 14px 20px;
   background: #ffffff;
-  border-bottom: 2px solid #ddd;
+  border-bottom: 2px solid var(--neutral-300);
 }
 
 .muster-top h1 {
@@ -44,7 +64,7 @@ body {
 .back-link {
   font-size: 14px;
   text-decoration: none;
-  color: #6f5cc2;
+  color: var(--primary);
   font-weight: 600;
 }
 
@@ -72,13 +92,13 @@ body {
   font-size: 16px;
   font-weight: 700;
   cursor: pointer;
-  background: #dcd6f5;
-  color: #444;
+  background: #ffffff;
+  color: #111827;
 }
 
 .mode-toggle button.active {
-  background: #6f5cc2;
-  color: #fff;
+  background: #1f3a5f;
+  color: #ffffff;
 }
 
 /* ================= GRID PRINCIPAL ================= */
@@ -91,7 +111,7 @@ body {
 
 /* ================= COLUNA ESQUERDA ================= */
 .locations {
-  background: #ffffff;
+  background: var(--neutral-100);
   border-radius: 20px;
   padding: 14px;
 }
@@ -110,26 +130,25 @@ body {
   padding: 8px 10px;
   margin-bottom: 6px;
   border-radius: 12px;
-  background: #efeaff;
+  background: var(--neutral-100);
+  color: var(--neutral-text);
   font-size: 16px;
   cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  box-shadow: 0 2px 06px rgba(0,0,0,0.08);
 }
 /*aqui abaixo muda as cores do location*/
-.location-item.mode-muster {
-  background: #f1ecff;
-  box-shadow: 0 4px 10px rgba(88, 63, 191, 0.25);
-}
-
+.location-item.mode-muster,
 .location-item.mode-abandon {
-  background: #f1ecff;
-  box-shadow: 0 4px 10px rgba(88, 63, 191, 0.25);
+  background: #eef1f6;
+  box-shadow: 0 3px 8px rgba(31, 58, 95, 0.25);
 }
-
-
 
 .loc-name {
-  font-weight: 600;
+  font-weight: 700;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #0f172a;
 }
 
 /* MUSTER / ABANDON VALUES */
@@ -142,14 +161,11 @@ body {
 }
 
 /* cores padrão (referência) */
-.loc-muster {
-  background: #cfc6f2; /*cor da celula com numero*/
-  color: #271574;
-}
-
+.loc-muster,
 .loc-abandon {
-  background: #cfc6f2;
-  color: #271574;
+  background: var(--neutral-200);
+  color: var(--neutral-text);
+  opacity: 0.4;
 }
 
 
@@ -180,33 +196,21 @@ body {
   opacity: 0.52;
 }
 
-
-
-
 /* ================= MODOS ATIVOS ================= */
-body.muster-mode .loc-muster {
-  background: #6f5cc2;
-  color: #fff;
-}
-
-body.muster-mode .loc-abandon {
-  opacity: 0.5;
-}
-
+body.muster-mode .loc-muster,
 body.abandon-mode .loc-abandon {
-  background: #6f5cc2;
-  color: #fff;
+  background: var(--primary);
+  color: #ffffff;
+  opacity: 1;
 }
 
-body.abandon-mode .loc-muster {
-  opacity: 0.5;
-}
 
 /* ================= SELEÇÃO ================= */
 .location-item.selected {
-  outline: 3px solid #e52222; /*cor da borda quando seleçao*/
-  box-shadow: 0 0 0 2px #6f5cc2;
+  outline: 2px solid var(--primary);
+  box-shadow: inset 0 0 0 2px var(--neutral-300);
 }
+
 
 /* ================= BLOQUEADO ================= */
 .location-item.blocked {
@@ -220,8 +224,6 @@ body.abandon-mode .loc-muster {
   background: #ffb3b3;
   color: #900;
 }
-
-/* ================= CONTROLE DE LOCAIS ================= */
 
 
 /* ================= COLUNA DIREITA ================= */
@@ -251,8 +253,8 @@ body.abandon-mode .loc-muster {
 }
 
 .missing {
-  background: #ffe1e1;
-  color: #ff0000;
+  background: var(--danger-bg);
+  color: var(--danger);
   min-height: 110px;              /* mais alto */
   display: flex;
   flex-direction: column;
@@ -273,29 +275,27 @@ body.abandon-mode .loc-muster {
 
 /* quando missing = 0 (tudo certo) */
 .missing.ok {
-  background: #dff5e3;
-  color: #0b7a35;
+  background: var(--success-bg);
+  color: var(--success);
 }
 .missing.ok span {color: #0b7a35;}
 .status.missing.ok {
-  background: #dff5e3;
+  background: var(--success-bg);
 }
 
 
 /* quando missing < 0 (erro grave) */
 .missing.error {
-  background: #ffd6d6;
-  color: #8b0000;
+  background: #ded1d1;
+  color: #ff0000;
 }
 
-
-.onboard {
-  background: #e7ddff;
-}
-
+.onboard,
 .count {
-  background: #e7ddff;
+  background: var(--neutral-100);
+  border: 1px solid var(--neutral-300);
 }
+
 
 /* ================= KEYPAD ================= */
 .keypad {
@@ -307,10 +307,10 @@ body.abandon-mode .loc-muster {
 .keypad button {
   padding: 9px 0;
   font-size: 32px;
-  border: 1px solid #d6ccf5;
+  border: 1px solid #cdb5e1;
   box-shadow: 0 2px 4px rgba(0,0,0,0.12);
   border-radius: 4px;
-  background: #f5f1f1;
+  background: var(--neutral-100);
   cursor: pointer;
 }
 
@@ -320,7 +320,7 @@ body.abandon-mode .loc-muster {
 }
 
 .keypad .action {
-  background: #6f5cc2;
+  background: var(--primary);
   color: #fff;
 }
 
@@ -395,18 +395,18 @@ body.abandon-mode .loc-muster {
   height: 44px;
   border-radius: 12px;
   border: none;
-  background: #6f5cc2;
+  background: var(--primary);
   color: #fff;
   font-weight: 700;
   cursor: pointer;
 }
 
 .keypad-actions .timeout {
-  background: #c0392b;
+  background: var(--danger);
 }
 
 .keypad-actions .timeout:hover {
-  background: #a93226;
+  background: #374151;
 }
 
 /* Caixa de mensagem */
@@ -419,19 +419,19 @@ body.abandon-mode .loc-muster {
   border: none;
   padding: 8px 10px;
   font-size: 13px;
-  background: #e7ddff;
+  background: #f9fafb;
   color: #333;
 }
 /* TIME OUT */
 .keypad .timeout {
-    background: #6f5cc2;
-  color: #fff;
+    background: #2f00ff;
+  color: #ffffff;
   font-weight: 700;
 }
 
 .keypad .timeout.timeout-active {
-  background: #b00000;
-  color: #fff;
+  background: #ff0000;
+  color: #ffffff;
 }
 .loc-name.editing {
   background: #fff3cd;
