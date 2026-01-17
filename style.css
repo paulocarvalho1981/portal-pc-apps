@@ -144,6 +144,10 @@ main.page-content {
 .app-card.certs {
   border-top: 6px solid #ec7b11;
 }
+
+.app-card.simbols {
+  border-top: 6px solid #1e66d0;
+}
 /* ===== CARD DESABILITADO ===== */
 .app-card.disabled {
   opacity: 0.55;
@@ -294,3 +298,4 @@ footer a:active {
 .app-card.calendario {
   border-top: 6px solid #2ecc71; /* verde, combinando com o calendário */
 }
+
