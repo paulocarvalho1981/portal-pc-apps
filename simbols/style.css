@@ -1,0 +1,182 @@
+/* =========================
+   BASE
+========================= */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 24px;
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+  background: #f7f8fa;
+  color: #222;
+}
+
+/* =========================
+   TOPO
+========================= */
+.topo {
+  position: relative;
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+.topo h1 {
+  margin: 0 0 8px;
+  font-size: 26px;
+}
+
+.descricao {
+  font-size: 14px;
+  color: #555;
+}
+
+/* BOTÃO VOLTAR */
+.btn-voltar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  text-decoration: none;
+  font-size: 14px;
+  padding: 6px 12px;
+  background: #1f2937;
+  color: #fff;
+  border-radius: 6px;
+}
+
+.btn-voltar:hover {
+  background: #111827;
+}
+
+/* =========================
+   SEÇÕES
+========================= */
+section {
+  margin-bottom: 28px;
+}
+
+section h2 {
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+/* =========================
+   GRID DE SÍMBOLOS
+========================= */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
+  gap: 10px;
+  font-size: 22px;
+}
+
+.grid span,
+.grid {
+  cursor: default;
+}
+/* =========================
+   FEEDBACK DE CÓPIA
+========================= */
+.grid span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+}
+
+.grid span:hover {
+  background: #e5e7eb;
+}
+
+.grid span.copiado {
+  background: #d1fae5;
+  transform: scale(1.1);
+}
+/* =========================
+   TOOLTIP "COPIADO"
+========================= */
+.grid span {
+  position: relative;
+}
+
+/* Tooltip escondido */
+.grid span::after {
+  content: "Copiado ✓";
+  position: absolute;
+  bottom: 110%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #111827;
+  color: #fff;
+  font-size: 11px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s, transform 0.15s;
+}
+
+/* Mostrar tooltip */
+.grid span.copiado::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-4px);
+}
+/* =========================
+   LAYOUT GERAL
+========================= */
+main {
+  max-width: 900px;
+  margin: 0 auto;
+}
+/* =========================
+   GRID – AJUSTE FINO
+========================= */
+.grid {
+  grid-template-columns: repeat(auto-fill, minmax(44px, 1fr));
+  gap: 12px;
+}
+
+.grid span {
+  font-size: 22px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+}
+.grid span:hover {
+  background: #f3f4f6;
+}
+
+.grid span.copiado {
+  background: #d1fae5;
+  border-color: #6ee7b7;
+}
+section {
+  padding-bottom: 8px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+section:last-child {
+  border-bottom: none;
+}
+@media (max-width: 600px) {
+
+  body {
+    padding: 16px;
+  }
+
+  .topo h1 {
+    font-size: 22px;
+  }
+
+  section h2 {
+    font-size: 16px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
+  }
+}

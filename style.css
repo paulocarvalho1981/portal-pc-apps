@@ -129,7 +129,7 @@ main.page-content {
 }
 
 .app-card.cartoes {
-  border-top: 6px solid #ff8c00;
+  border-top: 6px solid #a47c4b;
 }
 
 
@@ -143,6 +143,10 @@ main.page-content {
 
 .app-card.certs {
   border-top: 6px solid #ec7b11;
+}
+
+.app-card.simbols {
+  border-top: 6px solid cornflowerblue;
 }
 /* ===== CARD DESABILITADO ===== */
 .app-card.disabled {
