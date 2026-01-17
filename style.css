@@ -29,7 +29,7 @@ header.top {
 }
 
 .top-inner {
-  max-width: 1100px;
+  max-width: 1320px;
   margin: 0 auto;
 }
 
@@ -48,7 +48,7 @@ header.top p {
 
 /* ===== CONTEÚDO PRINCIPAL ===== */
 main.page-content {
-  max-width: 1100px;
+  max-width: 1620px;
   margin: 0 auto;
   padding: 30px 20px 60px;
 }
@@ -77,7 +77,7 @@ main.page-content {
 
 /* ===== CARD DO APP ===== */
 .app-card {
-  width: 100%;
+  flex: 0 0 320px;
   max-width: 320px;
 
   background: #ffffff;
@@ -129,7 +129,7 @@ main.page-content {
 }
 
 .app-card.cartoes {
-  border-top: 6px solid #a47c4b;
+  border-top: 6px solid #ff8c00;
 }
 
 
@@ -143,10 +143,6 @@ main.page-content {
 
 .app-card.certs {
   border-top: 6px solid #ec7b11;
-}
-
-.app-card.simbols {
-  border-top: 6px solid cornflowerblue;
 }
 /* ===== CARD DESABILITADO ===== */
 .app-card.disabled {
