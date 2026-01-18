@@ -89,7 +89,7 @@ body {
   padding: 10px;
   border-radius: 12px;
   border: none;
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 700;
   cursor: pointer;
   background: #ffffff;
@@ -442,4 +442,5 @@ body.abandon-mode .loc-abandon {
 .hidden {
   display: none !important;
 }
+
 
