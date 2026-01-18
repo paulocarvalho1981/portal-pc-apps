@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>DROPS Calculator</title>
+
+  <link rel="icon" type="image/png" href="../assets/images/drops.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+<header class="top">
+  <a href="../index.html" class="back-link">← Back</a>
+
+  <div class="title">
+    <img src="../assets/images/drops.png" class="title-icon" alt="DROPS">
+    <h1>DROPS Calculator</h1>
+  </div>
+</header>
+
+<!-- ================= CONTENT ================= -->
+<main class="content">
+
+  <!-- INSTRUCTIONS -->
+  <section class="instructions">
+    <h2>Instructions for Use</h2>
+    <p>
+      This tool estimates potential injury severity caused by dropped objects,
+      based on object mass and drop height.
+      Results are indicative and intended for risk assessment purposes only.
+    </p>
+  </section>
+
+  <!-- GRID -->
+  <section class="drops-grid">
+
+    <!-- ================= LEFT: CALC ================= -->
+    <div class="calc-box">
+
+      <h3>Input Data</h3>
+
+      <label>
+  Object Weight
+  <div class="unit-row">
+    <input type="number" id="massInput" value="4">
+    <select id="massUnit">
+      <option value="kg">kg</option>
+      <option value="lb">lb</option>
+    </select>
+  </div>
+</label>
+
+<label>
+  Drop Height
+  <div class="unit-row">
+    <input type="number" id="heightInput" value="3">
+    <select id="heightUnit">
+      <option value="m">m</option>
+      <option value="ft">ft</option>
+    </select>
+  </div>
+</label>
+
+
+      <label>
+        Material Type
+        <select id="materialSelect">
+          <option value="1">Steel / Rigid</option>
+          <option value="0.8">Tool / Mixed</option>
+          <option value="0.6">Non-metallic</option>
+        </select>
+      </label>
+
+      <button id="calcBtn">Calculate</button>
+
+      <!-- RESULT SUMMARY -->
+      <div class="result-box">
+        <div>
+          <strong>Impact Energy:</strong>
+          <span id="energyResult">—</span> J
+        </div>
+        <div>
+          <strong>Risk Level:</strong>
+          <span id="riskResult">—</span>
+        </div>
+      </div>
+
+      <!-- ZONE RESULT (LEFT SIDE) -->
+      <div class="zone-result-box" id="zoneInfo">
+        Click on a body area to display injury risk assessment.
+      </div>
+
+    </div>
+
+    <!-- ================= RIGHT: BODY ================= -->
+    <div class="body-box">
+      <h3>Body Impact Risk Map</h3>
+
+      <div class="svg-container">
+
+        <svg id="bodySvg"
+             class="svg-body"
+             viewBox="0 0 200 500"
+             xmlns="http://www.w3.org/2000/svg">
+
+          <style>
+            .zone {
+              fill: #d1d5db;
+              cursor: pointer;
+              transition: fill 0.15s;
+            }
+            .zone:hover {
+              fill: #fca5a5;
+            }
+          </style>
+
+          <!-- HEAD -->
+          <circle cx="100" cy="50" r="30"
+                  class="zone"
+                  data-zone="head" />
+
+          <!-- CHEST -->
+          <rect x="60" y="90" width="80" height="100" rx="10"
+                class="zone"
+                data-zone="chest" />
+
+          <!-- ABDOMEN -->
+          <rect x="60" y="200" width="80" height="80" rx="10"
+                class="zone"
+                data-zone="abdomen" />
+
+          <!-- LEGS -->
+          <rect x="70" y="290" width="25" height="160"
+                class="zone"
+                data-zone="leg" />
+          <rect x="105" y="290" width="25" height="160"
+                class="zone"
+                data-zone="leg" />
+
+        </svg>
+
+      </div>
+    </div>
+
+  </section>
+
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>

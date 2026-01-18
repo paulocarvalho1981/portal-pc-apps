@@ -1,0 +1,19 @@
+<svg viewBox="0 0 200 500" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .zone { fill:#d1d5db; cursor:pointer; }
+    .zone:hover { fill:#fca5a5; }
+  </style>
+
+  <!-- HEAD -->
+  <circle cx="100" cy="50" r="30" class="zone" data-zone="head"></circle>
+
+  <!-- CHEST -->
+  <rect x="60" y="90" width="80" height="100" rx="10" class="zone" data-zone="chest"></rect>
+
+  <!-- ABDOMEN -->
+  <rect x="60" y="200" width="80" height="80" rx="10" class="zone" data-zone="abdomen"></rect>
+
+  <!-- LEGS -->
+  <rect x="70" y="290" width="25" height="160" class="zone" data-zone="leg"></rect>
+  <rect x="105" y="290" width="25" height="160" class="zone" data-zone="leg"></rect>
+</svg>

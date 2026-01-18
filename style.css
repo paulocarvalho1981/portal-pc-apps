@@ -141,10 +141,10 @@ main.page-content {
 }
 
 .app-card.muster {
-  border-top: 6px solid #219742; /* roxo, igual ao app */
+  border-top: 6px solid #219742; 
 }
 .app-card.calendario {
-  border-top: 6px solid #cc822e; /* verde, combinando com o calendário */
+  border-top: 6px solid #cc822e; 
 }
 
 .app-card.certs {
@@ -157,6 +157,10 @@ main.page-content {
 
 .app-card.calc {
   border-top: 6px solid #ddff008a;
+}
+
+.app-card.drops {
+  border-top: 6px solid hsla(286, 100%, 50%, 0.541);
 }
 /* ===== CARD DESABILITADO ===== */
 .app-card.disabled {
