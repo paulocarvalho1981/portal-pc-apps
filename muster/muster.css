@@ -132,7 +132,7 @@ body {
   border-radius: 12px;
   background: var(--neutral-100);
   color: var(--neutral-text);
-  font-size: 16px;
+  font-size: 20px;
   cursor: pointer;
   box-shadow: 0 2px 06px rgba(0,0,0,0.08);
 }
@@ -165,7 +165,7 @@ body {
 .loc-abandon {
   background: var(--neutral-200);
   color: var(--neutral-text);
-  opacity: 0.4;
+  opacity: 0;
 }
 
 
@@ -442,5 +442,4 @@ body.abandon-mode .loc-abandon {
 .hidden {
   display: none !important;
 }
-
 
