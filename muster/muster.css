@@ -145,7 +145,7 @@ body {
 
 .loc-name {
   font-weight: 700;
-  font-size: 14px;
+  font-size: 20px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   color: #0f172a;
@@ -442,4 +442,5 @@ body.abandon-mode .loc-abandon {
 .hidden {
   display: none !important;
 }
+
 
