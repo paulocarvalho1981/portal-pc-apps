@@ -118,3 +118,45 @@ document.getElementById("escala").addEventListener("change", gerarCalendario);
 document.getElementById("meses").addEventListener("change", gerarCalendario);
 
 gerarCalendario();
+
+function exportarICS() {
+  let eventos = [];
+
+  // EXEMPLO – você vai ligar isso aos dias verdes/vermelhos
+  eventos.push({
+    title: "Embarque Offshore",
+    date: "20260205", // YYYYMMDD
+    description: "Início da escala offshore",
+  });
+
+  eventos.push({
+    title: "Desembarque Offshore",
+    date: "20260219",
+    description: "Fim da escala offshore",
+  });
+
+  let ics =
+`BEGIN:VCALENDAR
+VERSION:2.0
+CALSCALE:GREGORIAN
+`;
+
+  eventos.forEach(e => {
+    ics +=
+`BEGIN:VEVENT
+SUMMARY:${e.title}
+DTSTART;VALUE=DATE:${e.date}
+DTEND;VALUE=DATE:${e.date}
+DESCRIPTION:${e.description}
+END:VEVENT
+`;
+  });
+
+  ics += "END:VCALENDAR";
+
+  const blob = new Blob([ics], { type: "text/calendar;charset=utf-8" });
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = "escala-offshore.ics";
+  link.click();
+}
