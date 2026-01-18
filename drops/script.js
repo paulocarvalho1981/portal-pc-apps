@@ -2,6 +2,8 @@
 const massInput = document.getElementById("massInput");
 const heightInput = document.getElementById("heightInput");
 const materialSelect = document.getElementById("materialSelect");
+const massUnit = document.getElementById("massUnit");
+const heightUnit = document.getElementById("heightUnit");
 
 const energyResult = document.getElementById("energyResult");
 const riskResult = document.getElementById("riskResult");
@@ -10,8 +12,13 @@ const zoneInfo = document.getElementById("zoneInfo");
 const calcBtn = document.getElementById("calcBtn");
 const zones = document.querySelectorAll("#bodySvg .zone");
 
+/* ================= CONSTANTS ================= */
+const LB_TO_KG = 0.453592;
+const FT_TO_M = 0.3048;
+const GRAVITY = 9.81;
+
 /* ================= STATE ================= */
-let lastEnergy = null;
+let impactEnergy = null;
 
 /* ================= INJURY MATRIX ================= */
 const injuryMatrix = {
@@ -36,48 +43,62 @@ const injuryMatrix = {
   ]
 };
 
-/* ================= CALCULATION ================= */
-function calculateDrops() {
-  const mass = parseFloat(massInput.value);
-  const height = parseFloat(heightInput.value);
+/* ================= CALCULATE ================= */
+calcBtn.addEventListener("click", () => {
+
+  let mass = parseFloat(massInput.value);
+  let height = parseFloat(heightInput.value);
   const materialFactor = parseFloat(materialSelect.value);
 
   if (isNaN(mass) || isNaN(height)) {
-    alert("Please enter valid mass and height values.");
+    energyResult.textContent = "—";
+    riskResult.textContent = "Invalid input";
     return;
   }
 
-  lastEnergy = mass * 9.81 * height * materialFactor;
+  // ===== UNIT CONVERSION =====
+  if (massUnit.value === "lb") {
+    mass *= LB_TO_KG;
+  }
 
-  energyResult.textContent = lastEnergy.toFixed(1);
+  if (heightUnit.value === "ft") {
+    height *= FT_TO_M;
+  }
 
-  if (lastEnergy < 40) {
-    riskResult.textContent = "LOW";
-    riskResult.style.color = "#16a34a";
-  } else if (lastEnergy < 80) {
-    riskResult.textContent = "MEDIUM";
+  // ===== ENERGY CALCULATION =====
+  impactEnergy = mass * GRAVITY * height * materialFactor;
+
+  energyResult.textContent = impactEnergy.toFixed(1);
+
+  // ===== GLOBAL RISK LEVEL =====
+  let risk = "LOW";
+  riskResult.style.color = "#16a34a";
+
+  if (impactEnergy >= 40 && impactEnergy < 80) {
+    risk = "MEDIUM";
     riskResult.style.color = "#ca8a04";
-  } else {
-    riskResult.textContent = "HIGH / POTENTIALLY FATAL";
+  }
+
+  if (impactEnergy >= 80) {
+    risk = "HIGH / POTENTIALLY FATAL";
     riskResult.style.color = "#b91c1c";
   }
 
-  // reset visual state
+  riskResult.textContent = risk;
+
+  // ===== RESET VISUAL STATE =====
   zones.forEach(z => z.classList.remove("low", "medium", "high"));
   zoneInfo.classList.remove("low", "medium", "high");
 
   zoneInfo.textContent =
     "Click on a body area to display injury risk assessment.";
-}
-
-/* ================= EVENTS ================= */
-calcBtn.addEventListener("click", calculateDrops);
+});
 
 /* ================= SVG INTERACTION ================= */
 zones.forEach(zone => {
   zone.addEventListener("click", () => {
 
-    if (lastEnergy === null) {
+    if (impactEnergy === null) {
       zoneInfo.textContent =
         "⚠️ Please calculate impact energy first.";
       return;
@@ -92,32 +113,48 @@ zones.forEach(zone => {
       return;
     }
 
-    // clean previous highlights
+    // ===== CLEAR PREVIOUS STATE =====
     zones.forEach(z => z.classList.remove("low", "medium", "high"));
     zoneInfo.classList.remove("low", "medium", "high");
 
+    // ===== FIND INJURY MESSAGE =====
     let message = "";
     for (let r of rules) {
-      if (lastEnergy <= r.limit) {
+      if (impactEnergy <= r.limit) {
         message = r.text;
         break;
       }
     }
 
-    // global severity classification
+    // ===== SEVERITY =====
     let severity = "low";
-    if (lastEnergy >= 80) severity = "high";
-    else if (lastEnergy >= 40) severity = "medium";
+    if (impactEnergy >= 80) severity = "high";
+    else if (impactEnergy >= 40) severity = "medium";
 
-    // apply visual severity
+    // ===== APPLY VISUALS =====
     zone.classList.add(severity);
     zoneInfo.classList.add(severity);
 
     zoneInfo.textContent =
-      zoneName.toUpperCase() +
-      " — Impact energy: " +
-      lastEnergy.toFixed(1) +
-      " J. " +
-      message;
+      `${zoneName.toUpperCase()} — Impact energy: ${impactEnergy.toFixed(1)} J. ${message}`;
   });
+});
+
+/* ================= REFERENCES MODAL ================= */
+const refsBtn = document.getElementById("refsBtn");
+const refsModal = document.getElementById("refsModal");
+const closeRefs = document.getElementById("closeRefs");
+
+refsBtn.addEventListener("click", () => {
+  refsModal.classList.remove("hidden");
+});
+
+closeRefs.addEventListener("click", () => {
+  refsModal.classList.add("hidden");
+});
+
+refsModal.addEventListener("click", e => {
+  if (e.target === refsModal) {
+    refsModal.classList.add("hidden");
+  }
 });
