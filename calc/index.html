@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Calculadora de Unidades</title>
+
+  <!-- ÍCONE -->
+  <link rel="icon" type="image/png" href="../assets/images/calc.png">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- TOPO FIXO -->
+  <header class="top">
+    <a href="../index.html" class="back-link">← Voltar</a>
+
+    <div class="title">
+      <img src="../assets/images/calc.png" alt="Calc" class="title-icon">
+      <h1>Calculadora de Unidades</h1>
+    </div>
+
+    <div class="lang-switch">
+  <button id="langPT" class="lang active">PT</button>
+  <button id="langEN" class="lang">EN</button>
+</div>
+
+  </header>
+
+  <!-- CONTEÚDO -->
+  <main class="content">
+
+<div class="unit-tabs">
+  <button class="tab active" data-type="length">Comprimento</button>
+  <button class="tab" data-type="pressure">Pressão</button>
+  <button class="tab" data-type="density">Densidade</button>
+  <button class="tab" data-type="weight">Peso</button>
+  <button class="tab" data-type="torque">Torque</button>
+  <button class="tab" data-type="area">Área</button>
+
+</div>
+
+
+    <!-- BLOCO MODELO -->
+    <section class="unit-block">
+
+
+
+      <h2 id="unitTitle">Comprimento</h2>
+
+      <div class="unit-grid">
+
+  <!-- CÁLCULO -->
+  <div class="calc-box">
+    <h3>Cálculo</h3>
+
+    <label>
+      Valor
+      <input type="number" id="lenValue" placeholder="Ex: 3500">
+    </label>
+
+    <label>
+      De
+      <select id="lenFrom"></select>
+    </label>
+
+    <label>
+      Para
+      <select id="lenTo"></select>
+    </label>
+
+    <button type="button" id="invertBtn" class="invert-btn">⇄ Inverter</button>
+
+    <div class="result">
+      Resultado:
+      <strong id="lenResult">—</strong>
+    </div>
+  </div> <!-- ✅ FECHOU calc-box -->
+
+  <!-- REFERÊNCIA -->
+  <div class="ref-box">
+    <h3>Referência</h3>
+    <ul id="unitReference"></ul>
+  </div>
+
+</div>
+
+    </section>
+
+    <!-- OUTROS BLOCOS VIRÃO AQUI -->
+    <!-- Pressão | Densidade | Peso | Temperatura -->
+
+  </main>
+
+  <!-- JS -->
+  <script src="script.js"></script>
+</body>
+</html>

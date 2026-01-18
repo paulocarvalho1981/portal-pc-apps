@@ -125,13 +125,12 @@ main.page-content {
 
 /* ===== VARIAÇÕES POR APP ===== */
 .app-card.bingo {
-  border-top: 6px solid #1e66d0;
+  border-top: 6px solid #1c8c21;
 }
 
 .app-card.cartoes {
-  border-top: 6px solid #ff8c00;
+  border-top: 6px solid #e31212;
 }
-
 
 .app-card.roleta {
   border-top: 6px solid #ff0000;
@@ -141,12 +140,23 @@ main.page-content {
   border-top: 6px solid #00ff11;
 }
 
+.app-card.muster {
+  border-top: 6px solid #219742; /* roxo, igual ao app */
+}
+.app-card.calendario {
+  border-top: 6px solid #cc822e; /* verde, combinando com o calendário */
+}
+
 .app-card.certs {
   border-top: 6px solid #ec7b11;
 }
 
 .app-card.simbols {
   border-top: 6px solid #1e66d0;
+}
+
+.app-card.calc {
+  border-top: 6px solid #ddff008a;
 }
 /* ===== CARD DESABILITADO ===== */
 .app-card.disabled {
@@ -292,10 +302,3 @@ footer a:active {
   font-size: 15px;
   line-height: 1.6;
 }
-.app-card.muster {
-  border-top: 6px solid #6f5cc2; /* roxo, igual ao app */
-}
-.app-card.calendario {
-  border-top: 6px solid #2ecc71; /* verde, combinando com o calendário */
-}
-

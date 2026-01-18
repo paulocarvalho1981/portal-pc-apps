@@ -1,0 +1,247 @@
+/* =========================
+   RESET
+========================= */
+* {
+  box-sizing: border-box;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+  background: #e6e6ea;
+  color: #222;
+}
+
+/* =========================
+   TOPO
+========================= */
+.top {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 14px 20px;
+  background: #ffffff;
+  border-bottom: 2px solid #ddd;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 6px 12px;
+  border-radius: 8px;
+
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+
+  color: #ffffff;
+  background: #333;
+  border: 1px solid #ddd;
+
+  transition: background 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.back-link:hover {
+  background: #e5e7eb;
+  color: #111827;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+}
+
+.back-link:active {
+  background: #d1d5db;
+  box-shadow: none;
+}
+
+
+.title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.title-icon {
+  width: 28px;
+  height: 28px;
+}
+
+/* =========================
+   IDIOMA
+========================= */
+.lang-switch {
+  margin-left: auto;
+  display: flex;
+  gap: 6px;
+}
+
+.lang {
+  padding: 4px 8px;
+  border: 1px solid #ccc;
+  background: #fff;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.lang.active {
+  background: #333;
+  color: #fff;
+}
+
+/* =========================
+   CONTEÚDO
+========================= */
+.content {
+  padding: 20px;
+}
+
+/* =========================
+   ABAS
+========================= */
+.unit-tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
+}
+
+.unit-tabs .tab {
+  padding: 8px 14px;
+  border: 1px solid #ccc;
+  background: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.unit-tabs .tab.active {
+  background: #333;
+  color: #fff;
+  border-color: #333;
+}
+
+/* =========================
+   BLOCO
+========================= */
+.unit-block {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 22px;
+  margin-bottom: 20px;
+}
+
+.unit-block h2 {
+  margin-top: 0;
+  font-size: 26px;
+  color: #111827;
+}
+
+/* =========================
+   GRID FIXO (SEMPRE 2 COLUNAS)
+========================= */
+.unit-grid {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: 28px;
+  align-items: flex-start;
+}
+
+/* =========================
+   CÁLCULO
+========================= */
+.calc-box {
+  border: 1px solid #d1d5db;
+  border-radius: 12px;
+  padding: 22px;
+  background: #ffffff;
+}
+
+.calc-box h3 {
+  margin-top: 0;
+  margin-bottom: 16px;
+  font-size: 22px;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+/* INPUTS */
+label {
+  display: block;
+  margin-bottom: 14px;
+  font-size: 15px;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 8px;
+  margin-top: 4px;
+  font-size: 15px;
+}
+
+/* BOTÃO INVERTER */
+.invert-btn {
+  margin-top: 10px;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  background: #f5f5f5;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.invert-btn:hover {
+  background: #e0e0e0;
+}
+
+/* RESULTADO */
+.result {
+  margin-top: 18px;
+  font-size: 22px;
+  font-weight: 600;
+  color: #111827;
+}
+
+#lenResult {
+  cursor: pointer;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+#lenResult.copied {
+  color: #047857;
+}
+
+/* =========================
+   REFERÊNCIA (SEMPRE À DIREITA)
+========================= */
+.ref-box {
+  border: 2px solid #cfd4dc;
+  border-radius: 12px;
+  padding: 26px;
+  background: #f8fafc;
+
+  /* FIXA VISUALMENTE */
+  position: sticky;
+  top: 90px;
+}
+
+.ref-box h3 {
+  margin-top: 0;
+  margin-bottom: 16px;
+  font-size: 22px;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+#unitReference {
+  margin: 0;
+  padding-left: 26px;
+}
+
+#unitReference li {
+  font-size: 19px;
+  line-height: 1.7;
+  margin-bottom: 10px;
+  color: #111827;
+}
