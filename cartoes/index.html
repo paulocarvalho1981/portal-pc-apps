@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -15,14 +16,18 @@
   <!-- HEADER -->
 <header class="top">
   <div class="top-inner">
-    <h1>Comparador de Cartões</h1>
-    <p>PDF de ontem × PDF de hoje</p>
+    <div class="top-text">
+      <h1>Comparador de Cartões</h1>
+      <p>PDF de ontem × PDF de hoje</p>
+    </div>
 
-    <a href="../index.html" class="btn-voltar">
-      ← Voltar
-    </a>
+    <div class="top-actions">
+      <button id="infoBtn" class="info-btn">ℹ️ Informações</button>
+      <a href="../index.html" class="btn-voltar">← Voltar</a>
+    </div>
   </div>
 </header>
+
 
 
   <!-- CONTEÚDO -->
@@ -335,7 +340,7 @@ div.innerHTML = `
   janela.focus();
   janela.print();
 }
-// Bloqueia botão direito
+/* Bloqueia botão direito
 document.addEventListener("contextmenu", function (e) {
   e.preventDefault();
   alert("👀 Para de ser curioso 😄");
@@ -351,9 +356,47 @@ document.addEventListener("keydown", function (e) {
     alert("👀 Curiosidade é boa, mas aqui não 😉");
   }
 });
-
+*/
 
 </script>
 <script src="cartoes.js"></script>
+<div id="infoOverlay" class="popup-overlay hidden">
+  <div class="popup-box">
+    <button id="closeInfo" class="popup-close">✕</button>
+
+    <h2 id="infoTitle">
+      📄 Comparador de Cartões – Objetivo da Ferramenta
+    </h2>
+
+    <div class="popup-content">
+      <p>
+        Após os voos diários, o processo de troca dos cartões <strong>T</strong>
+        demandava um tempo significativo da equipe.
+      </p>
+
+      <p>
+        Visando agilizar esse processo, esta aplicação utiliza os arquivos PDF
+        recebidos dos <strong>Radio Operators</strong> logo após o voo,
+        comparando o PDF de ontem com o PDF de hoje.
+      </p>
+
+      <p>
+        A aplicação gera uma tabela simples indicando:
+      </p>
+
+      <ul>
+        <li>Quais cartões devem ser <strong>adicionados</strong></li>
+        <li>Quais cartões devem ser <strong>removidos</strong></li>
+      </ul>
+
+      <p>
+        Assim, a pessoa responsável pela troca já se desloca com
+        <strong>apenas os cartões necessários</strong>,
+        reduzindo tempo, retrabalho e risco operacional.
+      </p>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>

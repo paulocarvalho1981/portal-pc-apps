@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Calculadora de Unidades</title>
+<title id="pageTitleTag">Unit Converter</title>
 
   <!-- ÍCONE -->
   <link rel="icon" type="image/png" href="../assets/images/calc.png">
@@ -18,13 +18,14 @@
 
     <div class="title">
       <img src="../assets/images/calc.png" alt="Calc" class="title-icon">
-      <h1>Calculadora de Unidades</h1>
+     <h1 id="pageTitle"></h1>
     </div>
 
     <div class="lang-switch">
   <button id="langPT" class="lang active">PT</button>
   <button id="langEN" class="lang">EN</button>
 </div>
+<button id="helpBtn" class="help-btn">ℹ️ Instructions</button>
 
   </header>
 
@@ -32,12 +33,12 @@
   <main class="content">
 
 <div class="unit-tabs">
-  <button class="tab active" data-type="length">Comprimento</button>
-  <button class="tab" data-type="pressure">Pressão</button>
-  <button class="tab" data-type="density">Densidade</button>
-  <button class="tab" data-type="weight">Peso</button>
-  <button class="tab" data-type="torque">Torque</button>
-  <button class="tab" data-type="area">Área</button>
+<button class="tab active" data-type="length"></button>
+<button class="tab" data-type="pressure"></button>
+<button class="tab" data-type="density"></button>
+<button class="tab" data-type="weight"></button>
+<button class="tab" data-type="torque"></button>
+<button class="tab" data-type="area"></button>
 
 </div>
 
@@ -47,30 +48,31 @@
 
 
 
-      <h2 id="unitTitle">Comprimento</h2>
+      <h2 id="unitTitle"></h2>
 
       <div class="unit-grid">
 
   <!-- CÁLCULO -->
   <div class="calc-box">
-    <h3>Cálculo</h3>
+    <h3></h3>
 
-    <label>
-      Valor
-      <input type="number" id="lenValue" placeholder="Ex: 3500">
-    </label>
+<label>
+  <span id="labelValue"></span>
+  <input type="number" id="lenValue">
+</label>
 
-    <label>
-      De
-      <select id="lenFrom"></select>
-    </label>
+<label>
+  <span id="labelFrom"></span>
+  <select id="lenFrom"></select>
+</label>
 
-    <label>
-      Para
-      <select id="lenTo"></select>
-    </label>
+<label>
+  <span id="labelTo"></span>
+  <select id="lenTo"></select>
+</label>
 
-    <button type="button" id="invertBtn" class="invert-btn">⇄ Inverter</button>
+
+<button type="button" id="invertBtn" class="invert-btn"></button>
 
     <div class="result">
       Resultado:
@@ -80,7 +82,7 @@
 
   <!-- REFERÊNCIA -->
   <div class="ref-box">
-    <h3>Referência</h3>
+    <h3></h3>
     <ul id="unitReference"></ul>
   </div>
 
@@ -95,5 +97,14 @@
 
   <!-- JS -->
   <script src="script.js"></script>
+  <!-- POPUP INSTRUCTIONS -->
+<div id="helpOverlay" class="modal-overlay hidden">
+  <div class="modal">
+    <button class="modal-close" id="closeHelp">✕</button>
+    <h2 id="helpTitle"></h2>
+    <ul id="helpContent"></ul>
+  </div>
+</div>
+
 </body>
 </html>
