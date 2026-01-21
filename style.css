@@ -162,6 +162,14 @@ main.page-content {
 .app-card.drops {
   border-top: 6px solid hsla(286, 100%, 50%, 0.541);
 }
+
+.app-card.visual {
+  border-top: 6px solid #9c27b0; /* roxo técnico */
+}
+.app-card.compressor {
+  border-top: 6px solid #81f59a; /* roxo técnico */
+}
+
 /* ===== CARD DESABILITADO ===== */
 .app-card.disabled {
   opacity: 0.55;

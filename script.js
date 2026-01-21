@@ -18,6 +18,7 @@
 
   const containerOk = document.getElementById("apps-ok");
   const containerJogos = document.getElementById("apps-jogos");
+  const containerVisual = document.getElementById("apps-visual");
 
   const cards = document.querySelectorAll(".app-card");
 
@@ -31,6 +32,11 @@
     if (tipo === "jogo") {
       containerJogos.appendChild(card);
     }
+
+    if (tipo === "visual") {
+       containerVisual.appendChild(card);
+    }
+
   });
 
 });

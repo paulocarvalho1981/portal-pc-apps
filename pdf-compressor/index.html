@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Compactador de PDF</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="app">
+
+  <header class="header">
+  <button class="back-btn" id="backBtn">⬅️ Voltar</button>
+
+  <div class="header-center">
+    <h1>Compactador de PDF</h1>
+    <p class="subtitle">O arquivo não sai do seu computador</p>
+  </div>
+  <button class="info-btn" id="infoBtn">ℹ️</button>
+</header>
+
+
+  <main class="card">
+
+    <div class="drop-zone" id="dropZone">
+      <input type="file" id="fileInput" accept="application/pdf" hidden>
+      <p class="drop-text">
+        ⬇️ Arraste o PDF aqui<br>
+        <span>ou clique para selecionar</span>
+      </p>
+      <p class="file-info" id="fileInfo"></p>
+    </div>
+
+    <div class="size-info" id="sizeInfo">
+      <div>📦 Tamanho original: <strong id="sizeOriginal">–</strong></div>
+     <div>📉 Tamanho final: <strong id="sizeFinal">–</strong></div>
+     <div>📊 Redução: <strong id="sizeReduction">–</strong></div>
+    </div>
+
+
+    <div class="options">
+      <h3>Qualidade da compactação</h3>
+
+      <label>
+        <input type="radio" name="quality" value="high" checked>
+        🔴 Alta – menor tamanho
+      </label>
+
+      <label>
+        <input type="radio" name="quality" value="medium">
+        🟡 Média – equilíbrio
+      </label>
+
+      <label>
+        <input type="radio" name="quality" value="low">
+        🟢 Baixa – melhor qualidade
+      </label>
+    </div>
+
+    <button class="action-btn" id="compressBtn" disabled>
+      Compactar PDF
+    </button>
+
+    <div class="progress hidden" id="progress">
+      <div class="progress-text" id="progressText">0%</div>
+      <div class="progress-bar">
+      <div class="progress-fill" id="progressFill"></div>
+     </div>
+    </div>
+
+
+    <a class="download-btn hidden" id="downloadBtn" download>
+      Download PDF reduzido
+    </a>
+
+  </main>
+
+</div>
+
+<!-- MODAL DE INSTRUÇÕES -->
+<div class="modal-overlay hidden" id="infoModal">
+  <div class="modal-box">
+    <h2>📄 Compactador de PDF</h2>
+
+    <ul>
+      <li>✔️ Funciona totalmente offline</li>
+      <li>✔️ O arquivo não é enviado para a internet</li>
+      <li>📉 Ideal para PDFs escaneados</li>
+      <li>⚠️ Após a compactação, o texto deixa de ser pesquisável</li>
+    </ul>
+
+    <button class="modal-close" id="closeModalBtn">Fechar</button>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>
