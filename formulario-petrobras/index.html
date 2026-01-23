@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Formulário Petrobras</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+<div class="page">
+
+  <!-- TOPO -->
+  
+<header class="top">
+  <div class="top-inner">
+
+    <!-- LADO ESQUERDO -->
+    <div>
+      <a href="../index.html" class="btn-voltar">← Voltar</a>
+
+      <h1>Formulário Petrobras</h1>
+      <p>Gerador de cursos obrigatórios para autorização de terceirizados</p>
+    </div>
+
+    <!-- LADO DIREITO -->
+    <div class="download-card">
+      <h3>Download do Formulário</h3>
+
+      <div class="download-buttons">
+        <a
+          href="assets/1sign.docx"
+          targer="_blank"
+          class="btn-download"
+        >
+          📄 Formulário – 1 Assinatura
+        </a>
+
+        <a href="downloads/2sign.docx" target="_blank" class="btn-download">
+          📄 Formulário – 2 Assinaturas
+        </a>
+      </div>
+    </div>
+
+  </div>
+</header>
+
+
+
+  <!-- CONTEÚDO -->
+  <main class="page-content">
+
+    <!-- SELEÇÃO DE FUNÇÃO -->
+    <section class="card">
+      <h2>Função do Profissional</h2>
+
+      <select id="funcao">
+  <option value="" disabled selected>Selecione a função</option>
+
+  <option disabled>── Catering Crew ──</option>
+  <option value="cook">Cook</option>
+  <option value="steward">Steward</option>
+
+  <option disabled>── Drilling ──</option>
+  <option value="casing_hand">Casing Hand</option>
+  <option value="casing_supervisor">Casing Supervisor</option>
+  <option value="cementer">Cementer</option>
+  <option value="geologist">Geologist</option>
+  <option value="h2s_supervisor">H2S Supervisor</option>
+  <option value="mud_engineer">Mud Engineer</option>
+  <option value="mud_logger">Mud Logger</option>
+  <option value="slickline_operator">Slickline Operator</option>
+
+  <option disabled>── Other ──</option>
+  <option value="blaster_painter">Blaster / Painter</option>
+  <option value="fire_watch">Fire Watch</option>
+  <option value="rov_supervisor">ROV Supervisor</option>
+  <option value="rov_technician">ROV Technician</option>
+  <option value="subsea_tech">Subsea Tech</option>
+  <option value="scaffolder">Scaffolder</option>
+  <option value="welder_fitter">Welder / Fitter</option>
+  <option value="training_instructor">Training Instructor</option>
+  <option disabled>── Rope Access ──</option>
+<option value="rope_access">Rope Access Team</option>
+
+<option disabled>── Electrical ──</option>
+<option value="electrician">Electrician</option>
+
+</select>
+
+    </section>
+
+    <!-- ÁREA PRINCIPAL -->
+    <section class="layout">
+
+      <!-- CURSOS -->
+      <div class="cursos">
+
+        <!-- EXTERNOS -->
+        <div class="card">
+          <h3>Cursos Externos (Cliente / Petrobras)</h3>
+
+          <div class="curso-lista" id="cursosExternos">
+            <!-- preenchido via JS -->
+            <p class="placeholder">Selecione uma função</p>
+          </div>
+        </div>
+
+        <!-- INTERNOS -->
+        <div class="card">
+          <h3>Cursos Internos (Empresa)</h3>
+
+          <div class="curso-lista" id="cursosInternos">
+            <!-- preenchido via JS -->
+            <p class="placeholder">Selecione uma função</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- VALIDADE FIXA -->
+      <aside class="card validade">
+        <h3>Validade – Cursos Externos</h3>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Curso</th>
+              <th>Validade</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+             <td>CBSP</td>
+          <td>5 anos</td>
+            </tr>
+            <tr>
+             <td>THUET</td>
+                 <td>4 anos</td>
+                </tr>
+
+            <tr>
+              <td>Golden Rules</td>
+              <td>2 anos</td>
+            </tr>
+            <tr>
+              <td>ASO</td>
+              <td>1 ano</td>
+            </tr>
+            <!-- depois alimentamos -->
+          </tbody>
+        </table>
+      </aside>
+
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    Uso interno • Offshore
+  </footer>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
