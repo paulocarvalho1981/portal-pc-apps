@@ -3,10 +3,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const externosDiv = document.getElementById("cursosExternos");
   const internosDiv = document.getElementById("cursosInternos");
 
-  /* ======================================================
-     CURSOS EXTERNOS COMUNS (QUANDO APLICÁVEL)
-     (não significa que TODOS tenham todos, é só agrupamento)
-  ====================================================== */
   const externosBase = [
     "Golden Rules (Regras de Ouro)",
     "CBSP",
@@ -17,9 +13,6 @@ document.addEventListener("DOMContentLoaded", () => {
     "Petrobras Human Factor"
   ];
 
-  /* ======================================================
-     CURSOS INTERNOS BASE (TODOS OS TERCEIROS)
-  ====================================================== */
   const internosBase = [
     "Control of Work Awareness",
     "Engage eLearning",
@@ -29,18 +22,13 @@ document.addEventListener("DOMContentLoaded", () => {
     "SCS Cybersecurity Basic Training"
   ];
 
-  /* ======================================================
-     MATRIZ COMPLETA DE FUNÇÕES (EXPLÍCITA)
-     Tudo listado, nada automático, nada implícito
-  ====================================================== */
   const dados = {
 
-    /* ================= CATERING ================= */
     cook: {
       externos: [
         ...externosBase,
         "NR-12",
-        "NR-37 – Basic Course for Food Handlers (16H)"
+        "NR-37 - Basic Course for Food Handlers (16H)"
       ],
       internos: [
         ...internosBase,
@@ -65,7 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
       externos: [
         ...externosBase,
         "NR-12",
-        "NR-34 – Onshore Induction"
+        "NR-34 - Onshore Induction"
       ],
       internos: [
         ...internosBase,
@@ -74,16 +62,15 @@ document.addEventListener("DOMContentLoaded", () => {
       ]
     },
 
-    /* ================= DRILLING / SERVICES ================= */
     casing_hand: {
       externos: [
         ...externosBase,
         "NR-12",
-        "NR-34 – Onshore Induction",
+        "NR-34 - Onshore Induction",
         "NR-37 Avançado",
-        "NR-34 – Cargo Handling",
+        "NR-34 - Cargo Handling",
         "NR-35",
-        "Carta de Anuência – NR-35"
+        "Carta de Anuência - NR-35"
       ],
       internos: [
         ...internosBase
@@ -94,11 +81,11 @@ document.addEventListener("DOMContentLoaded", () => {
       externos: [
         ...externosBase,
         "NR-12",
-        "NR-34 – Onshore Induction",
+        "NR-34 - Onshore Induction",
         "NR-37 Avançado",
-        "NR-34 – Cargo Handling",
+        "NR-34 - Cargo Handling",
         "NR-35",
-        "Carta de Anuência – NR-35"
+        "Carta de Anuência - NR-35"
       ],
       internos: [
         ...internosBase
@@ -109,11 +96,11 @@ document.addEventListener("DOMContentLoaded", () => {
       externos: [
         ...externosBase,
         "NR-12",
-        "NR-34 – Onshore Induction",
+        "NR-34 - Onshore Induction",
         "NR-37 Avançado",
-        "NR-34 – Cargo Handling",
+        "NR-34 - Cargo Handling",
         "NR-35",
-        "Carta de Anuência – NR-35",
+        "Carta de Anuência - NR-35",
         "Online IADC WellSharp Introductory"
       ],
       internos: [
@@ -124,7 +111,7 @@ document.addEventListener("DOMContentLoaded", () => {
     mud_engineer: {
       externos: [
         ...externosBase,
-        "NR-34 – Onshore Induction",
+        "NR-34 - Onshore Induction",
         "NR-37 Avançado"
       ],
       internos: [
@@ -135,7 +122,7 @@ document.addEventListener("DOMContentLoaded", () => {
     mud_logger: {
       externos: [
         ...externosBase,
-        "NR-34 – Onshore Induction",
+        "NR-34 - Onshore Induction",
         "NR-37 Avançado"
       ],
       internos: [
@@ -146,7 +133,7 @@ document.addEventListener("DOMContentLoaded", () => {
     geologist: {
       externos: [
         ...externosBase,
-        "NR-34 – Onshore Induction",
+        "NR-34 - Onshore Induction",
         "NR-37 Avançado"
       ],
       internos: [
@@ -157,7 +144,7 @@ document.addEventListener("DOMContentLoaded", () => {
     h2s_supervisor: {
       externos: [
         ...externosBase,
-        "NR-34 – Onshore Induction",
+        "NR-34 - Onshore Induction",
         "NR-37 Avançado"
       ],
       internos: [
@@ -169,27 +156,26 @@ document.addEventListener("DOMContentLoaded", () => {
       externos: [
         ...externosBase,
         "NR-12",
-        "NR-34 – Onshore Induction",
+        "NR-34 - Onshore Induction",
         "NR-37 Avançado",
         "NR-35",
-        "Carta de Anuência – NR-35"
+        "Carta de Anuência - NR-35"
       ],
       internos: [
         ...internosBase
       ]
     },
 
-    /* ================= OTHER ================= */
     blaster_painter: {
       externos: [
         ...externosBase,
         "NR-12",
-        "NR-34 – Onshore Induction",
-        "NR-33 – Espaço Confinado",
+        "NR-34 - Onshore Induction",
+        "NR-33 - Espaço Confinado",
         "NR-37 Avançado",
-        "NR-34 – Cargo Handling",
+        "NR-34 - Cargo Handling",
         "NR-35",
-        "Carta de Anuência – NR-35"
+        "Carta de Anuência - NR-35"
       ],
       internos: [
         ...internosBase
@@ -200,13 +186,13 @@ document.addEventListener("DOMContentLoaded", () => {
       externos: [
         ...externosBase,
         "NR-12",
-        "NR-34 – Onshore Induction",
-        "NR-33 – Espaço Confinado",
+        "NR-34 - Onshore Induction",
+        "NR-33 - Espaço Confinado",
         "NR-37 Avançado",
-        "NR-34 – Cargo Handling",
-        "NR-34 – Firewatcher",
+        "NR-34 - Cargo Handling",
+        "NR-34 - Firewatcher",
         "NR-35",
-        "Carta de Anuência – NR-35"
+        "Carta de Anuência - NR-35"
       ],
       internos: [
         ...internosBase,
@@ -218,12 +204,12 @@ document.addEventListener("DOMContentLoaded", () => {
        externos: [
         ...externosBase,
         "NR-12",
-        "NR-34 – Onshore Induction",
-        "NR-33 – Espaço Confinado",
+        "NR-34 - Onshore Induction",
+        "NR-33 - Espaço Confinado",
         "NR-37 Avançado",
-        "NR-34 – Cargo Handling",
+        "NR-34 - Cargo Handling",
         "NR-35",
-        "Carta de Anuência – NR-35"
+        "Carta de Anuência - NR-35"
       ],
       internos: [
         ...internosBase
@@ -267,9 +253,9 @@ document.addEventListener("DOMContentLoaded", () => {
         "NR-34 - Onshore Induction",
         "NR-33 - Espaço Confinado",
         "NR-37 Avançado",
-        "Well Control Training – Level 1",
+        "Well Control Training - Level 1",
         "NR-35",
-        "Carta de Anuência – NR-35"
+        "Carta de Anuência - NR-35"
       ],
       internos: [
         ...internosBase
@@ -283,9 +269,9 @@ document.addEventListener("DOMContentLoaded", () => {
         "NR-34 - Onshore Induction",
         "NR-33 - Espaço Confinado",
         "NR-37 Avançado",
-        "Well Control Training – Level 1",
+        "Well Control Training - Level 1",
         "NR-35",
-        "Carta de Anuência – NR-35"
+        "Carta de Anuência - NR-35"
       ],
       internos: [
         ...internosBase
@@ -296,11 +282,11 @@ document.addEventListener("DOMContentLoaded", () => {
       externos: [
         ...externosBase,
         "NR-12",
-        "NR-34 – Onshore Induction",
+        "NR-34 - Onshore Induction",
         "NR-37 Avançado",
-        "NR-34 – Cargo Handling",
+        "NR-34 - Cargo Handling",
         "NR-35",
-        "Carta de Anuência – NR-35",
+        "Carta de Anuência - NR-35",
         "Online IADC WellSharp Introductory"
       ],
       internos: [
@@ -314,8 +300,8 @@ document.addEventListener("DOMContentLoaded", () => {
         ...externosBase,
         "IRATA",
         "NR-35",
-        "Carta de Anuência – NR-35",
-        "NR-34 – Onshore Induction",
+        "Carta de Anuência - NR-35",
+        "NR-34 - Onshore Induction",
         "NR-37 Avançado"
       ],
       internos: [
@@ -328,7 +314,7 @@ document.addEventListener("DOMContentLoaded", () => {
         ...externosBase,
         "NR-10",
         "NR-12",
-        "Carta de Anuência – NR-10"
+        "Carta de Anuência - NR-10"
       ],
       internos: [
         ...internosBase

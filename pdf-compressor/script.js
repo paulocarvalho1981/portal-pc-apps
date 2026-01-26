@@ -70,8 +70,40 @@ sizeReductionEl.textContent = "–";
 /* ======================
    BOTÃO COMPACTAR (placeholder)
 ====================== */
+/* ======================
+   DETECTAR PDF COM TEXTO
+====================== */
+async function pdfTemTexto(file) {
+  const buffer = await file.arrayBuffer();
+  const pdf = await pdfjsLib.getDocument({ data: buffer }).promise;
+
+  for (let i = 1; i <= pdf.numPages; i++) {
+    const page = await pdf.getPage(i);
+    const content = await page.getTextContent();
+    if (content.items && content.items.length > 0) {
+      return true; // tem texto pesquisável
+    }
+  }
+  return false;
+}
+
+
 compressBtn.addEventListener("click", async () => {
   if (!selectedFile) return;
+
+  // proteção: PDF já otimizado
+  progress.classList.remove("hidden");
+  progressText.textContent = "Analisando PDF...";
+
+  const temTexto = await pdfTemTexto(selectedFile);
+if (temTexto) {
+  alert(
+    "Este PDF já possui texto pesquisável e provavelmente está otimizado.\n\n" +
+    "A compactação offline é indicada principalmente para PDFs escaneados."
+  );
+}
+
+
 
   progress.classList.remove("hidden");
   progressFill.style.width = "0%";
@@ -133,8 +165,14 @@ const reduction = Math.round(
   ((originalMB - finalMB) / originalMB) * 100
 );
 
-sizeFinalEl.textContent = `${finalMB.toFixed(2)} MB`;
-sizeReductionEl.textContent = `${reduction}%`;
+if (finalMB >= originalMB) {
+  sizeFinalEl.textContent = "–";
+  sizeReductionEl.textContent =
+    "Arquivo já está suficientemente compactado para tecnologia offline";
+} else {
+  sizeFinalEl.textContent = `${finalMB.toFixed(2)} MB`;
+  sizeReductionEl.textContent = `${reduction}%`;
+}
 
   downloadBtn.href = url;
   downloadBtn.download = selectedFile.name.replace(

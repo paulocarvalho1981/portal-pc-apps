@@ -240,3 +240,75 @@ footer a:active {
     max-width: calc(50% - 20px);
   }
 }
+
+.games-hidden {
+  position: fixed;
+  bottom: 8px;
+  right: 10px;
+
+  font-size: 18px;
+  opacity: 0.25;
+  cursor: pointer;
+  text-decoration: none;
+
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  z-index: 999;
+}
+
+.games-hidden:hover {
+  opacity: 0.8;
+  transform: scale(1.2);
+}
+
+
+/* ======================================================
+   AJUSTES LEVES PARA PÁGINA DE JOGOS
+   (não afeta a home)
+====================================================== */
+
+body.games header.top {
+  padding: 30px 20px 25px;
+}
+
+body.games header.top h1 {
+  font-size: 34px;
+}
+
+body.games header.top p {
+  font-size: 15px;
+  opacity: 0.8;
+}
+
+/* reduz altura percebida da página */
+body.games main.page-content {
+  padding-top: 20px;
+  padding-bottom: 40px;
+}
+
+/* seção mais compacta */
+body.games .apps-section {
+  margin-bottom: 30px;
+}
+
+body.games .section-title {
+  font-size: 22px;
+  margin-bottom: 18px;
+}
+
+/* cards ganham mais presença */
+body.games .app-card {
+  flex: 0 0 260px;
+  max-width: 260px;
+  padding: 28px 20px;
+}
+
+/* grid mais equilibrado para poucos cards */
+body.games .apps {
+  gap: 32px;
+}
+
+/* card "em breve" assume que é diferente */
+body.games .app-card.disabled {
+  opacity: 0.45;
+  filter: grayscale(40%);
+}
