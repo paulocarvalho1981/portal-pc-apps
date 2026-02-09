@@ -4,22 +4,53 @@
   <meta charset="UTF-8">
   <title>Muster Calculator</title>
   <link rel="stylesheet" href="muster.css">
+  <link rel="icon" type="image/png" href="muster_favicon_fixed_64.png">
+
 </head>
 
 
 
+<!-- POPUP HISTÓRICO -->
+<div class="history-popup hidden">
+  <div class="popup-box history-box">
+    <h3>Saved States</h3>
+
+    <div class="history-list"></div>
+
+    <div class="popup-actions">
+      <button type="button" class="cancel" id="closeHistory">Close</button>
+    </div>
+  </div>
+</div>
 
 
 
 
 <body>
 
-<!-- TOPO FIXO (FORA DO SCALE) -->
 <div class="muster-top">
   <h1>Muster Calculator</h1>
+
+  <div class="top-center">
   <div class="clock" id="clock">00:00:00</div>
+
+  <!-- SAVE / LOAD STATE -->
+  <div class="state-controls">
+    <button class="state-btn save">SAVE</button>
+    <button class="state-btn load">LOAD</button>
+  </div>
+
+  <!-- DRILL CONTROL -->
+  <div class="drill-controls">
+    <button class="drill-btn start">START DRILL</button>
+    <button class="drill-btn end" disabled>END DRILL</button>
+  </div>
+</div>
+
+
   <a href="../index.html" class="back-link">← Portal</a>
 </div>
+
 
 <!-- ÁREA PRINCIPAL (ESCALADA) -->
 <div class="muster-page">
@@ -58,112 +89,85 @@
       </div>
 
       <div class="location-item">
-        <span class="loc-name">Lifeboat 4
-        </span>
+        <span class="loc-name">Lifeboat 4</span>
         <span class="loc-muster">0</span>
         <span class="loc-abandon">0</span>
       </div>
 
       <div class="location-item">
-        <span class="loc-name">Command Team
-            <span class="edit-icon">✎</span>
-        </span>
+        <span class="loc-name">Command Team</span>
         <span class="loc-muster">0</span>
         <span class="loc-abandon">0</span>
       </div>
 
       <div class="location-item">
-        <span class="loc-name">Rapid Response
-            <span class="edit-icon">✎</span>
-        </span>
+        <span class="loc-name">Rapid Response</span>
         <span class="loc-muster">0</span>
         <span class="loc-abandon">0</span>
       </div>
 
       <div class="location-item">
-        <span class="loc-name">Emerg. Team 1
-            <span class="edit-icon">✎</span>
-        </span>
+        <span class="loc-name">Emerg. Team 1</span>
         <span class="loc-muster">0</span>
         <span class="loc-abandon">0</span>
       </div>
 
       <div class="location-item">
-        <span class="loc-name">Emerg. Team 2
-            <span class="edit-icon">✎</span>
-        </span>
+        <span class="loc-name">Emerg. Team 2</span>
         <span class="loc-muster">0</span>
         <span class="loc-abandon">0</span>
       </div>
 
       <div class="location-item">
-        <span class="loc-name">Medical
-            <span class="edit-icon">✎</span>
-        </span>
+        <span class="loc-name">Medical</span>
         <span class="loc-muster">0</span>
         <span class="loc-abandon">0</span>
       </div>
 
       <div class="location-item">
-        <span class="loc-name">ENGINEERING ECR
-            <span class="edit-icon">✎</span>
-        </span>
+        <span class="loc-name">ENGINEERING ECR</span>
         <span class="loc-muster">0</span>
         <span class="loc-abandon">0</span>
       </div>
 
       <div class="location-item">
-        <span class="loc-name">Well Control
-            <span class="edit-icon">✎</span>
-        </span>
+        <span class="loc-name">Well Control</span>
         <span class="loc-muster">0</span>
         <span class="loc-abandon">0</span>
       </div>
 
       <div class="location-item">
-        <span class="loc-name">Galley
-            <span class="edit-icon">✎</span>
-    </span>
+        <span class="loc-name">Galley</span>
         <span class="loc-muster">0</span>
         <span class="loc-abandon">0</span>
       </div>
 
       <div class="location-item">
-        <span class="loc-name">Toolpusher
-            <span class="edit-icon">✎</span>
-        </span>
+        <span class="loc-name">Toolpusher</span>
         <span class="loc-muster">0</span>
         <span class="loc-abandon">0</span>
       </div>
 
       <div class="location-item">
-        <span class="loc-name">Isolation Team
-            <span class="edit-icon">✎</span>
-        </span>
+        <span class="loc-name">Isolation Team</span>
         <span class="loc-muster">0</span>
         <span class="loc-abandon">0</span>
       </div>
 
       <div class="location-item">
-        <span class="loc-name">ROV
-            <span class="edit-icon">✎</span>
-        </span>
+        <span class="loc-name">ROV</span>
         <span class="loc-muster">0</span>
         <span class="loc-abandon">0</span>
       </div>
 
       <div class="location-item">
-        <span class="loc-name">Laundry
-            <span class="edit-icon">✎</span>
-        </span>
+        <span class="loc-name">Laundry</span>
         <span class="loc-muster">0</span>
         <span class="loc-abandon">0</span>
       </div>
 
       <div class="location-item">
-        <span class="loc-name">Exempted
-            <span class="edit-icon">✎</span>
-        </span>
+        <span class="loc-name">Exempted</span>
         <span class="loc-muster">0</span>
         <span class="loc-abandon">0</span>
       </div>
@@ -180,6 +184,7 @@
       <div class="status onboard">
         <h3>ONBOARD - Continuous click to change</h3>
         <span>160</span>
+        <button class="onboard-edit-btn">EDIT</button>
       </div>
 
       <div class="status count">
@@ -201,6 +206,10 @@
         class="info-box"
         placeholder="Operational message..."
         ></textarea>
+        <div id="drillDuration" class="drill-duration hidden">
+  DRILL DURATION: <strong>00:00:00</strong>
+</div>
+
     </section>
 
   </div>
@@ -226,12 +235,23 @@
 </div>
 
 
+<div id="startDrillModal" class="modal-overlay hidden">
+  <div class="modal-box">
+    <h2>Drill not started</h2>
+    <p>Start the drill before adding location counts.</p>
+
+    <button class="start-drill-btn">START DRILL</button>
+
+    <button class="close-btn">Cancel</button>
+  </div>
+</div>
 
 
 <!-- SCRIPT PRINCIPAL -->
 <script src="muster.js"></script>
 
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
 
 
