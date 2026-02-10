@@ -9,14 +9,21 @@
 /* ===== BODY ===== */
 body {
   min-height: 100vh;
-  background: linear-gradient(135deg, #fceabb, #f8b500);
-  color: #222;
+  background: linear-gradient(
+  135deg,
+  #0f172a,  /* azul petróleo escuro */
+  #111827,  /* azul grafite */
+  #020617   /* quase preto */
+);
+
+  color: #ffffff;
 }
 .page {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   overflow-x: hidden;   /* trava render duplicado */
+  text-align: center;
 }
 
 
@@ -24,7 +31,7 @@ body {
 header.top {
   background: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(6px);
-  padding: 50px 20px 40px;
+  padding: 10px 20px 20px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 }
 
@@ -43,8 +50,6 @@ header.top p {
   font-size: 16px;
   opacity: 0.9;
 }
-
-/* ===== ÁREA DOS APPS ===== */
 
 /* ===== CONTEÚDO PRINCIPAL ===== */
 main.page-content {
@@ -207,7 +212,7 @@ footer a {
   color: inherit;        /* usa a mesma cor do texto */
   text-decoration: none; /* remove o sublinhado */
   font-weight: inherit;  /* não fica com cara de link */
-  cursor: default;       /* evita cursor de link */
+  cursor: pointer;      
 }
 
 footer a:hover,
@@ -311,4 +316,54 @@ body.games .apps {
 body.games .app-card.disabled {
   opacity: 0.45;
   filter: grayscale(40%);
+}
+/* ======================================================
+   BOTÃO VOLTAR — PÁGINA DE JOGOS
+====================================================== */
+
+body.games .back-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 10px 16px;
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(6px);
+
+  color: #222;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+
+  box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+
+  z-index: 10;
+}
+
+body.games .back-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px rgba(0,0,0,0.22);
+  background: rgba(255, 255, 255, 0.85);
+}
+
+body.games .back-btn .icon {
+  font-size: 16px;
+  line-height: 1;
+}
+
+body.games .back-btn .text {
+  white-space: nowrap;
+}
+.app-card.memoria {
+  border-top: 6px solid #6f5cc2; 
+}
+.app-card.piano {
+  border-top: 6px solid #ec7b11;
 }
