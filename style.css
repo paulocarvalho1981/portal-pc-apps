@@ -188,11 +188,13 @@ main.page-content {
   position: absolute;
   top: 14px;
   right: 14px;
-  background: #ff8c00;
+  background: #0f172a;
   color: #fff;
   padding: 6px 12px;
-  font-size: 12px;
+  font-size: 8px;
+  font-weight: 700;
   border-radius: 999px;
+  text-transform: uppercase;
 }
 
 /* ===== FOOTER ===== */
