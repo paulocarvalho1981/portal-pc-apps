@@ -9,22 +9,33 @@
 /* ===== BODY ===== */
 body {
   min-height: 100vh;
-  background: linear-gradient(
-  135deg,
-  #0f172a,  /* azul petróleo escuro */
-  #111827,  /* azul grafite */
-  #020617   /* quase preto */
-);
+
+  background:
+    linear-gradient(
+      rgba(10, 15, 30, 0.45),
+      rgba(10, 15, 30, 0.65)
+    ),
+    url("assets/images/background1.jpeg");
+
+  background-size: cover;
+  background-position: center bottom;
+  background-attachment: fixed;
 
   color: #ffffff;
 }
+;
+
 .page {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  overflow-x: hidden;   /* trava render duplicado */
-  text-align: center;
+  background: linear-gradient(
+    135deg,
+    #0f172a,
+    #111827,
+    #020617
+  );
+
+  padding-bottom: 280px; /* espaço para revelar o background */
 }
+
 
 
 /* ===== HEADER ===== */
@@ -43,12 +54,14 @@ header.top {
 header.top h1 {
   font-size: 60px;
   font-weight: 700;
+  text-align: center;
 }
 
 header.top p {
   margin-top: 10px;
   font-size: 16px;
   opacity: 0.9;
+  text-align: center;
 }
 
 /* ===== CONTEÚDO PRINCIPAL ===== */
@@ -85,9 +98,9 @@ main.page-content {
   flex: 0 0 calc(20% - 20px);
   max-width: calc(20% - 20px);
 
-  background: #ffffff;
+  background: rgba(255, 255, 255, 0.65);
   border-radius: 22px;
-  padding: 30px 20px;
+  padding: 22px 18px;
 
   text-align: center;
   text-decoration: none;
@@ -201,6 +214,7 @@ main.page-content {
 /* ===== FOOTER ===== */
 footer {
   text-align: center;
+  background: transparent;
   padding: 16px;
   font-size: 14px;
   color: #fff;
@@ -397,4 +411,16 @@ body.games .back-btn .text {
   transform: translateY(-2px);
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
   background: linear-gradient(135deg, #243a5e, #111827);
+}
+.banner-container {
+    position: absolute;
+    top: 35%;
+    left: 10px;
+    width: 200px;
+}
+
+.banner-logo {
+    width: 50%;
+    height: auto;
+    border-radius: 12px;
 }
