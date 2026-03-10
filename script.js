@@ -1,5 +1,5 @@
 
-  const secret = ["n", "a", "n", "a"];
+  const secret = ["j", "u", "j", "u"];
   let input = [];
 
   window.addEventListener("keydown", e => {
@@ -8,7 +8,7 @@
 
     if (input.join("") === secret.join("")) {
       window.open(
-        "https://animesonlinecc.to/anime/nanatsu-no-taizai-hd/",
+        "https://animesonlinecc.to/anime/jujutsu-kaisen-hd/",
         "_blank"
       );
       input = [];
@@ -40,3 +40,4 @@
   });
 
 });
+
