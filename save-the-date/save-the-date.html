@@ -76,18 +76,57 @@ max-width:80vw;
 /* TEXTO */
 
 .message{
-margin-bottom:15px;
+margin-bottom:1px;
 font-size:18px;
 }
 
 /* NOMES */
 
-.names{
+.names-block{
 font-family:'Great Vibes', cursive;
-font-size:60px;
-margin:10px 0;
+margin-top:20px;
+text-align:center;
 }
 
+/* linhas */
+
+.row1{
+font-size:80px;
+transform:translateX(-40px);
+}
+
+.row2{
+display:flex;
+justify-content:center;
+align-items:center;
+gap:12px;
+margin:5px 0;
+}
+
+.row3{
+font-size:80px;
+transform:translateX(40px);
+}
+
+/* letra E */
+
+.e{
+font-family:'Playfair Display', serif;
+font-size:28px;
+}
+
+/* coração grande */
+
+.heart-big{
+font-size:100px;
+color:white;
+}
+/* coração dourado menor */
+
+.heart{
+color:#d4af37;
+font-size:30px;
+}
 /* DATA */
 
 .date{
@@ -98,7 +137,7 @@ font-size:22px;
 /* LINHA */
 
 .line{
-margin:25px 0;
+margin:15px 0;
 color:#d4af37;
 font-size:18px;
 }
@@ -134,7 +173,7 @@ letter-spacing:2px;
 <!-- VIDEO -->
 
 <video class="video-bg" autoplay muted loop playsinline>
-<source src="Img 5110.mp4" type="video/mp4">
+<source src="video.mp4" type="video/mp4">
 </video>
 
 <div class="overlay"></div>
@@ -147,11 +186,28 @@ letter-spacing:2px;
 
 <div class="message">Te aguardamos para o casamento de</div>
 
-<div class="names">Paulo ♥ Hagata</div>
+<div class="names-block">
+
+<div class="row1">
+<span class="paulo">Paulo</span>
+</div>
+
+<div class="row2">
+<span class="e">E    </span>
+<span class="heart-big">    ♥</span>
+</div>
+
+<div class="row3">
+<span class="hagata">Hagata</span>
+</div>
+
+</div>
+
+
 
 <div class="date">18 • Maio • 2026</div>
 
-<div class="line">──── ♥ ────</div>
+<div class="line">──── <span class="heart">♥</span> ────</div>
 
 <div class="message">Estamos contando os dias</div>
 
