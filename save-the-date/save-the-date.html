@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Save the Date</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:'Playfair Display', serif;
+color:white;
+overflow:hidden;
+}
+
+/* VIDEO FUNDO */
+
+.video-bg{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+object-fit:cover;
+object-position: top 10%;
+z-index:-2;
+}
+
+/* OVERLAY ESCURO */
+
+.overlay{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.35);
+z-index:-1;
+}
+
+/* CONTAINER */
+
+.container{
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:20px;
+}
+
+/* IMAGEM SAVE THE DATE */
+
+.save{
+margin-bottom:00px;
+}
+
+.save img{
+width:500px;
+max-width:80vw;
+
+}
+
+/* TEXTO */
+
+.message{
+margin-bottom:15px;
+font-size:18px;
+}
+
+/* NOMES */
+
+.names{
+font-family:'Great Vibes', cursive;
+font-size:60px;
+margin:10px 0;
+}
+
+/* DATA */
+
+.date{
+margin:15px 0;
+font-size:22px;
+}
+
+/* LINHA */
+
+.line{
+margin:25px 0;
+color:#d4af37;
+font-size:18px;
+}
+
+/* CONTADOR */
+
+.countdown{
+display:flex;
+gap:35px;
+margin-top:10px;
+}
+
+.countdown div{
+text-align:center;
+}
+
+.number{
+font-size:42px;
+font-weight:bold;
+}
+
+.label{
+font-size:12px;
+letter-spacing:2px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- VIDEO -->
+
+<video class="video-bg" autoplay muted loop playsinline>
+<source src="Img 5110.mp4" type="video/mp4">
+</video>
+
+<div class="overlay"></div>
+
+<div class="container">
+
+<div class="save">
+<img src="save-the-date.png" alt="Save the Date">
+</div>
+
+<div class="message">Te aguardamos para o casamento de</div>
+
+<div class="names">Paulo ♥ Hagata</div>
+
+<div class="date">18 • Maio • 2026</div>
+
+<div class="line">──── ♥ ────</div>
+
+<div class="message">Estamos contando os dias</div>
+
+<div class="countdown">
+
+<div>
+<div class="number" id="days"></div>
+<div class="label">DIAS</div>
+</div>
+
+<div>
+<div class="number" id="hours"></div>
+<div class="label">HORAS</div>
+</div>
+
+<div>
+<div class="number" id="minutes"></div>
+<div class="label">MIN</div>
+</div>
+
+<div>
+<div class="number" id="seconds"></div>
+<div class="label">SEG</div>
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+const targetDate = new Date("May 18, 2026 00:00:00").getTime();
+
+function updateCountdown(){
+
+const now = new Date().getTime();
+const distance = targetDate - now;
+
+const days = Math.floor(distance / (1000*60*60*24));
+const hours = Math.floor((distance % (1000*60*60*24))/(1000*60*60));
+const minutes = Math.floor((distance % (1000*60*60))/(1000*60));
+const seconds = Math.floor((distance % (1000*60))/1000);
+
+document.getElementById("days").innerText = days;
+document.getElementById("hours").innerText = hours;
+document.getElementById("minutes").innerText = minutes;
+document.getElementById("seconds").innerText = seconds;
+
+}
+
+setInterval(updateCountdown,1000);
+
+updateCountdown();
+
+</script>
+
+</body>
+</html>
