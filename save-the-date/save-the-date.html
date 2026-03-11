@@ -2,9 +2,11 @@
 <html lang="pt-BR">
 
 <head>
-
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Save the Date">
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
 <title>Save the Date</title>
 
@@ -21,7 +23,7 @@ box-sizing:border-box;
 body{
 font-family:'Playfair Display', serif;
 color:white;
-overflow:hidden;
+overflow:auto;
 }
 
 /* VIDEO FUNDO */
@@ -33,11 +35,11 @@ left:0;
 width:100%;
 height:100%;
 object-fit:cover;
-object-position: top 10%;
+object-position:top 10%;
 z-index:-2;
 }
 
-/* OVERLAY ESCURO */
+/* OVERLAY */
 
 .overlay{
 position:fixed;
@@ -52,90 +54,80 @@ z-index:-1;
 /* CONTAINER */
 
 .container{
-height:100vh;
+min-height:100dvh;
 display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
 text-align:center;
-padding:20px;
+padding:30px 20px;
 }
 
-/* IMAGEM SAVE THE DATE */
-
-.save{
-margin-bottom:-10px;
-margin-top: -20px;
-}
+/* SAVE THE DATE */
 
 .save img{
-width:500px;
-max-width:80vw;
-
+width:420px;
+max-width:70vw;
+margin-bottom:05px;
+margin-top: -10px;
 }
 
 /* TEXTO */
 
 .message{
-margin-bottom:1px;
-font-size:18px;
+font-size:14px;
+margin-bottom:10px;
 }
 
 /* NOMES */
 
 .names-block{
 font-family:'Great Vibes', cursive;
-margin-top:20px;
 text-align:center;
+margin:15px 0;
 }
-
-/* linhas */
 
 .row1{
 font-size:80px;
-transform:translateX(-40px);
-margin-top: 70px;
-margin-bottom: -10px;
+transform:translateX(-30px);
+line-height:0.8;
 }
 
 .row2{
 display:flex;
 justify-content:center;
 align-items:center;
-gap:120px;
+gap:40px;
 margin:5px 0;
-margin-left: 50%;
-margin-bottom: -10px;
-line-height: 0.8;
 }
 
 .row3{
 font-size:80px;
-transform:translateX(40px);
-margin-bottom: -10px;
+transform:translateX(30px);
+line-height:0.9;
 }
 
 /* letra E */
 
 .e{
 font-family:'Playfair Display', serif;
-font-size:28px;
-margin-bottom: 10px;
+font-size:22px;
 }
 
 /* coração grande */
 
 .heart-big{
-font-size:100px;
+font-size:70px;
 color:white;
 }
-/* coração dourado menor */
+
+/* coração dourado */
 
 .heart{
 color:#d4af37;
-font-size:30px;
-margin-top: -20px;
+font-size:24px;
 }
+
 /* DATA */
 
 .date{
@@ -156,7 +148,7 @@ font-size:18px;
 .countdown{
 display:flex;
 gap:35px;
-margin-top:05px;
+margin-top:10px;
 }
 
 .countdown div{
@@ -173,13 +165,38 @@ font-size:12px;
 letter-spacing:2px;
 }
 
+/* RESPONSIVO */
+
+@media (max-height:700px){
+
+.save img{
+width:400px;
+}
+
+.row1,
+.row3{
+font-size:65px;
+}
+
+.heart-big{
+font-size:70px;
+}
+
+.countdown{
+gap:20px;
+}
+
+.number{
+font-size:32px;
+}
+
+}
+
 </style>
 
 </head>
 
 <body>
-
-<!-- VIDEO -->
 
 <video class="video-bg" autoplay muted loop playsinline>
 <source src="video.mp4" type="video/mp4">
@@ -197,22 +214,16 @@ letter-spacing:2px;
 
 <div class="names-block">
 
-<div class="row1">
-<span class="paulo">Paulo</span>
-</div>
+<div class="row1">Paulo</div>
 
 <div class="row2">
-<span class="e">E    </span>
-<span class="heart-big">    ♡</span>
+<span class="e">E</span>
+<span class="heart-big">♡</span>
 </div>
 
-<div class="row3">
-<span class="hagata">Hagata</span>
-</div>
+<div class="row3">Hagata</div>
 
 </div>
-
-
 
 <div class="date">18 • Maio • 2026</div>
 
