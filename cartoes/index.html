@@ -139,18 +139,33 @@ function extrairCartoesPorLB(texto) {
 
   const ocorrencias = {};
 
-  for (let i = 0; i < tokens.length - 1; i++) {
-    const cartao = tokens[i].trim().toUpperCase();
-    let lb = "";
+for (let i = 0; i < tokens.length - 1; i++) {
+  const cartao = tokens[i].trim().toUpperCase();
+  let lb = "";
 
-if (tokens[i + 1] === "LB" && tokens[i + 2]) {
-  lb = `LB${tokens[i + 2]}`;
-} else {
-  lb = tokens[i + 1].trim().toUpperCase();
+  for (let j = i + 1; j <= i + 4 && j < tokens.length; j++) {
+
+    const t = tokens[j].trim().toUpperCase();
+
+   if (t === "LB" && tokens[j + 1]) {
+  const lbTemp = `LB${tokens[j + 1].trim()}`;
+
+  // só aceita LB1 a LB4 (lifeboats)
+  if (/^LB[1-4]$/.test(lbTemp)) {
+    lb = lbTemp;
+    break;
+  }
 }
 
+    if (/^LB[1-4]$/.test(t)) {
+      lb = t;
+      break;
+    }
+  }
+
+
     // 🔒 REGRA: cartão SEMPRE com /A ou /B
-    const cartaoValido = /^\d{3}(\/[A-Z])?$/.test(cartao);
+    const cartaoValido = /^\d{3}([A-Z]|\/[A-Z])?$/.test(cartao);
     const lbValida = /^LB[1-4]$/.test(lb);
 
     if (!cartaoValido || !lbValida) continue;
