@@ -141,11 +141,16 @@ function extrairCartoesPorLB(texto) {
 
   for (let i = 0; i < tokens.length - 1; i++) {
     const cartao = tokens[i].trim().toUpperCase();
-    const lb = tokens[i + 1].trim().toUpperCase();
+    let lb = "";
+
+if (tokens[i + 1] === "LB" && tokens[i + 2]) {
+  lb = `LB${tokens[i + 2]}`;
+} else {
+  lb = tokens[i + 1].trim().toUpperCase();
+}
 
     // 🔒 REGRA: cartão SEMPRE com /A ou /B
-    const cartaoValido = /^\d{3}\/[A-Z]$/.test(cartao);
-
+    const cartaoValido = /^\d{3}(\/[A-Z])?$/.test(cartao);
     const lbValida = /^LB[1-4]$/.test(lb);
 
     if (!cartaoValido || !lbValida) continue;
@@ -233,7 +238,7 @@ function renderLB(lb, resultado) {
       for (const lb in dados.resultado) {
         limpo[lb] = new Set(
           [...dados.resultado[lb]].filter(c =>
-            c.includes("/") || dados.ocorrencias[c] === 1
+            dados.ocorrencias[c] >= 1
           )
         );
       }
