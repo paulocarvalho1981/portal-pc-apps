@@ -1,0 +1,799 @@
+:root {
+  /* CORE */
+  --primary: #1f3a5f;        /* azul offshore */
+  --secondary: #2563eb;      /* ações secundárias */
+
+  /* NEUTROS */
+  --neutral-100: #f8fafc;
+  --neutral-200: #e5e7eb;
+  --neutral-300: #cbd5e1;
+  --neutral-400: #94a3b8;
+  --neutral-text: #1f2937;
+
+  /* STATUS */
+  --success: #1e7f4f;
+  --success-bg: #e6f4ec;
+
+  --danger: #eb0f0f;
+  --danger-bg: #fdecea;
+
+  --warning: #b45309;
+  --warning-bg: #fff7ed;
+}
+
+html {
+  color-scheme: light;
+}
+
+body {
+  background-color: #dedbed;
+}
+
+
+/* ================= RESET ================= */
+* {
+  box-sizing: border-box;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+  background: #e6e6ea;
+}
+
+/* ================= TOPO FIXO ================= */
+.muster-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  background: #ffffff;
+  border-bottom: 2px solid var(--neutral-300);
+}
+
+.muster-top h1 {
+  font-size: 22px;
+  margin: 0;
+}
+
+.clock {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.back-link {
+  font-size: 14px;
+  text-decoration: none;
+  color: var(--primary);
+  font-weight: 600;
+}
+
+/* ================= ÁREA ESCALADA ================= */
+.muster-page {
+  padding: 20px;
+  zoom: 0.80; /* verificar tamanho no tablet*/
+  width: 100%; /* verificar tamanho no tablet*/
+}
+
+/* ================= BOTÕES DE MODO ================= */
+.mode-toggle {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 14px;
+  position: relative;
+  z-index: 100;
+}
+
+.mode-toggle button {
+  flex: 1;
+  padding: 10px;
+  border-radius: 12px;
+  border: none;
+  font-size: 20px;
+  font-weight: 700;
+  cursor: pointer;
+  background: #ffffff;
+  color: #111827;
+}
+
+.mode-toggle button.active {
+  background: #1f3a5f;
+  color: #ffffff;
+}
+
+/* ================= GRID PRINCIPAL ================= */
+.muster-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  align-items: start;
+}
+
+/* ================= COLUNA ESQUERDA ================= */
+.locations {
+  background: var(--neutral-100);
+  border-radius: 20px;
+  padding: 14px;
+}
+
+.locations h2 {
+  margin: 6px 0 12px;
+  font-size: 18px;
+}
+
+/* ================= LOCATION ITEM ================= */
+.location-item {
+  display: grid;
+  grid-template-columns: 1.4fr 0.6fr 0.6fr;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  margin-bottom: 6px;
+  border-radius: 12px;
+  background: var(--neutral-100);
+  color: var(--neutral-text);
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow: 0 2px 06px rgba(0,0,0,0.08);
+}
+/*aqui abaixo muda as cores do location*/
+.location-item.mode-muster,
+.location-item.mode-abandon {
+  background: #eef1f6;
+  box-shadow: 0 3px 8px rgba(31, 58, 95, 0.25);
+}
+
+.loc-name {
+  font-weight: 700;
+  font-size: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #0f172a;
+}
+
+/* MUSTER / ABANDON VALUES */
+.loc-muster,
+.loc-abandon {
+  text-align: center;
+  padding: 6px 0;
+  border-radius: 8px;
+  font-weight: 700;
+}
+
+/* cores padrão (referência) */
+.loc-muster,
+.loc-abandon {
+  background: var(--neutral-200);
+  color: var(--neutral-text);
+  opacity: 0;
+}
+
+
+/* estado normal */
+.loc-muster,
+.loc-abandon {
+  opacity: 0.4;
+  font-weight: 500;
+}
+
+/* modo MUSTER */
+.location-item.mode-muster .loc-muster {
+  opacity: 1;
+  font-weight: 800;
+}
+
+.location-item.mode-muster .loc-abandon {
+  opacity: 0.5;
+}
+
+/* modo ABANDON */
+.location-item.mode-abandon .loc-abandon {
+  opacity: 1;
+  font-weight: 800;
+}
+
+.location-item.mode-abandon .loc-muster {
+  opacity: 0.52;
+}
+
+/* ================= MODOS ATIVOS ================= */
+body.muster-mode .loc-muster,
+body.abandon-mode .loc-abandon {
+  background: var(--primary);
+  color: #ffffff;
+  opacity: 1;
+}
+
+
+/* ================= SELEÇÃO ================= */
+.location-item.selected {
+  outline: 2px solid var(--primary);
+  box-shadow: inset 0 0 0 2px var(--neutral-300);
+}
+
+
+/* ================= BLOQUEADO ================= */
+.location-item.blocked {
+  background: #ffd6d6;
+  color: #900;
+  pointer-events: none;
+}
+
+.location-item.blocked .loc-muster,
+.location-item.blocked .loc-abandon {
+  background: #ffb3b3;
+  color: #900;
+}
+
+
+/* ================= COLUNA DIREITA ================= */
+.panel {
+  display: grid;
+  grid-template-rows: auto auto auto auto;
+  gap: 12px;
+}
+
+/* ================= STATUS ================= */
+.status {
+  border-radius: 20px;
+  padding: 12px;
+  text-align: center;
+}
+
+.status h3 {
+  margin: 0;
+  font-size: 12px;
+}
+
+.status span {
+  display: block;
+  font-size: 32px;
+  font-weight: bold;
+  margin-top: 6px;
+}
+
+.missing {
+  background: var(--danger-bg);
+  color: var(--danger);
+  min-height: 110px;              /* mais alto */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.missing h3 {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.missing span {
+  font-size: 48px;                /* número maior */
+  font-weight: 900;               /* mais forte */
+  margin-top: 8px;
+}
+
+/* quando missing = 0 (tudo certo) */
+.missing.ok {
+  background: var(--success-bg);
+  color: var(--success);
+}
+.missing.ok span {color: #0b7a35;}
+.status.missing.ok {
+  background: var(--success-bg);
+}
+
+
+/* quando missing < 0 (erro grave) */
+.missing.error {
+  background: #ded1d1;
+  color: #ff0000;
+}
+
+.onboard,
+.count {
+  background: var(--neutral-100);
+  border: 1px solid var(--neutral-300);
+}
+
+
+/* ================= KEYPAD ================= */
+.keypad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.keypad button {
+  padding: 9px 0;
+  font-size: 32px;
+  border: 1px solid #cdb5e1;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.12);
+  border-radius: 4px;
+  background: var(--neutral-100);
+  cursor: pointer;
+}
+
+.keypad .wide { /*wide é o )*/
+  grid-column: span 3;
+  padding: 9px 0;
+}
+
+.keypad .action {
+  background: var(--primary);
+  color: #fff;
+}
+
+/* ================= POPUP ONBOARD ================= */
+.onboard-popup {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.onboard-popup.hidden {
+  display: none;
+}
+
+.popup-box {
+  background: #fff;
+  padding: 20px;
+  border-radius: 16px;
+  width: 280px;
+  text-align: center;
+}
+
+.popup-box h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.popup-box input {
+  width: 100%;
+  height: 42px;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 18px;
+  border: 1px solid #ccc;
+}
+
+.popup-actions {
+  display: flex;
+  margin-top: 15px;
+  gap: 10px;
+}
+
+.popup-actions button {
+  flex: 1;
+  height: 38px;
+   border-radius: 10px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.popup-actions .confirm {
+  background: #6f5cc2;
+  color: #fff;
+}
+
+.popup-actions .cancel {
+  background: #ddd;
+}
+.keypad-actions {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.keypad-actions .action {
+  height: 44px;
+  border-radius: 12px;
+  border: none;
+  background: var(--primary);
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.keypad-actions .timeout {
+  background: var(--danger);
+}
+
+.keypad-actions .timeout:hover {
+  background: #374151;
+}
+
+/* Caixa de mensagem */
+.info-box {
+  margin-top: 10px;
+  width: 100%;
+  height: 42px;
+  resize: none;
+  border-radius: 12px;
+  border: none;
+  padding: 8px 10px;
+  font-size: 13px;
+  background: #f9fafb;
+  color: #333;
+}
+/* TIME OUT */
+.keypad .timeout {
+    background: #2f00ff;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.keypad .timeout.timeout-active {
+  background: #ff0000;
+  color: #ffffff;
+}
+.loc-name.editing {
+  background: #fff3cd;
+  border-radius: 6px;
+  padding: 2px 6px;
+  outline: 2px dashed #ff9800;
+}
+.hidden {
+  display: none !important;
+}
+
+/* ================= SAVE / LOAD NO TOPO ================= */
+
+.top-center {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* container dos botões */
+.state-controls {
+  display: flex;
+  gap: 8px;
+}
+
+/* botão base */
+.state-btn {
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: 10px;
+  border: 1px solid var(--neutral-300);
+  background: var(--neutral-100);
+  color: var(--primary);
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.12);
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+/* hover leve */
+.state-btn:hover {
+  background: var(--neutral-200);
+}
+
+/* botão SAVE */
+.state-btn.save {
+  border-color: var(--primary);
+}
+
+/* botão LOAD */
+.state-btn.load {
+  border-color: var(--secondary);
+  color: var(--secondary);
+}
+
+/* feedback de clique */
+.state-btn:active {
+  transform: scale(0.96);
+}
+/* ================= EDIT ONBOARD BUTTON ================= */
+
+/* ================= EDIT ONBOARD - CANTO SUPERIOR ================= */
+
+.onboard {
+  position: relative; /* já estava correto */
+}
+
+.onboard-edit-btn {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+
+  padding: 4px 10px;
+  font-size: 11px;
+  font-weight: 700;
+
+  border-radius: 10px;
+  border: 1px solid var(--neutral-300);
+  background: var(--neutral-100);
+  color: var(--primary);
+
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.12);
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.onboard-edit-btn:hover {
+  background: var(--neutral-200);
+}
+
+.onboard-edit-btn:active {
+  transform: scale(0.96);
+}
+/* ================= HISTÓRICO ================= */
+
+.history-box {
+  width: 360px;
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+.history-list {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.history-item {
+  border: 1px solid var(--neutral-300);
+  border-radius: 10px;
+  padding: 8px 10px;
+  background: var(--neutral-100);
+  font-size: 12px;
+}
+
+.history-item strong {
+  display: block;
+  font-size: 13px;
+}
+
+.history-actions {
+  display: flex;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.history-actions button {
+  flex: 1;
+  font-size: 11px;
+  padding: 4px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.history-actions .load {
+  background: var(--primary);
+  color: #fff;
+}
+
+.history-actions .delete {
+  background: var(--danger);
+  color: #fff;
+}
+
+/* ================= HISTÓRICO - MODAL MODERNO ================= */
+
+.history-popup {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.history-popup.hidden {
+  display: none;
+}
+
+.history-box {
+  background: #fff;
+  width: 420px;
+  max-height: 80vh;
+  border-radius: 18px;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+}
+
+/* título */
+.history-box h3 {
+  margin: 0 0 10px 0;
+  text-align: center;
+}
+
+/* lista com scroll interno */
+.history-list {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-right: 4px;
+}
+
+/* card individual */
+.history-item {
+  border: 1px solid var(--neutral-300);
+  border-radius: 14px;
+  padding: 10px;
+  background: var(--neutral-100);
+  font-size: 13px;
+}
+
+/* data */
+.history-item strong {
+  display: block;
+  text-align: center;
+  margin-bottom: 6px;
+  font-size: 14px;
+}
+
+/* ações */
+.history-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.history-actions button {
+  flex: 1;
+  height: 34px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 12px;
+}
+
+/* botões */
+.history-actions .load {
+  background: var(--primary);
+  color: #fff;
+}
+
+.history-actions .delete {
+  background: var(--danger);
+  color: #fff;
+}
+
+/* footer fixo */
+.history-box .popup-actions {
+  margin-top: 12px;
+}
+
+.history-box .popup-actions button {
+  width: 100%;
+  height: 38px;
+  border-radius: 12px;
+  border: none;
+  background: var(--neutral-200);
+  font-weight: 700;
+  cursor: pointer;
+}
+/* ================= DRILL CONTROLS ================= */
+
+.drill-controls {
+  display: flex;
+  gap: 8px;
+}
+
+/* botão base */
+.drill-btn {
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 800;
+  border-radius: 10px;
+  border: 1px solid var(--neutral-300);
+  background: var(--neutral-100);
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.12);
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+/* START */
+.drill-btn.start {
+  color: var(--success);
+  border-color: var(--success);
+}
+
+/* END */
+.drill-btn.end {
+  color: var(--danger);
+  border-color: var(--danger);
+}
+
+/* hover */
+.drill-btn:hover:not(:disabled) {
+  background: var(--neutral-200);
+}
+
+/* ativo */
+.drill-btn:active:not(:disabled) {
+  transform: scale(0.96);
+}
+
+/* desabilitado */
+.drill-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.modal-box {
+  background: #fff;
+  border-radius: 14px;
+  padding: 26px 28px;
+  width: 90%;
+  max-width: 380px;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+}
+
+.modal-box h2 {
+  margin: 0 0 10px;
+  font-size: 20px;
+}
+
+.modal-box p {
+  font-size: 15px;
+  color: #555;
+  margin-bottom: 22px;
+}
+
+/* 🔥 botão igual ao topo */
+.start-drill-btn {
+  background: #ffffff;
+  color: #0a8f3c;
+  border: 2px solid #0a8f3c;
+  padding: 10px 22px;
+  border-radius: 999px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-bottom: 12px;
+}
+
+.start-drill-btn:hover {
+  background: #0a8f3c;
+  color: #fff;
+}
+
+.close-btn {
+  background: transparent;
+  border: none;
+  color: #888;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.hidden {
+  display: none;
+}
+.drill-duration {
+  margin-top: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #0a7d2c;
+  text-align: right;
+}
+
+.drill-duration.hidden {
+  display: none;
+}
